@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Router, Route } from 'react-router-dom';
 import Home from './Home/Home'
-import Dashboard from 'Home/Dashboard';
-import Trading from 'Trading/Trading';
-import MarketCap from 'MarketCap/MarketCap';
-import Ico from 'Ico/Ico';
-// import BuyAndSell from 'Buy/Buy';
-import Wallet from 'Wallet/Wallet';
-import Exchange from 'Trading/Exchange';
+import Dashboard from './Dashboard/Dashboard';
+import Trading from './Trading/Exchange';
+import MarketCap from './MarketCap/MarketCap';
+import Ico from './Ico/Ico';
+import BuyAndSell from './Buy/Buy';
+import Wallet from './My wallet/Wallet';
+import Exchange from './Trading/Exchange';
 
 import createBrowserHistory from 'history/createBrowserHistory';
 import './App.css';
@@ -24,7 +24,7 @@ class App extends Component {
                 <Route exact path="/trading" component={Trading} />
                 <Route path="/marketcap" component={MarketCap}/>
                 <Route path="/ico" component={Ico}/>
-                {/*<Route path="/buyandsell" component={BuyAndSell}/>*/}
+                <Route path="/buyandsell" component={BuyAndSell}/>
                 <Route path="/wallet" component={Wallet}/>
                 <Route path="/exchange" component={Exchange}/>
             </div>
