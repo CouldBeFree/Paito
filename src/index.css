@@ -12,3 +12,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/*App.js*/
+.main-wrapper{
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.nav-holder{
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.top-bar{
+  width: 100%;
+  height: 50px;
+  background: black;
+  /*margin-left: -15px;*/
+  /*margin-right: -15px;*/
+}
+
+.logo-holder{
+  width: 100%;
+  height: 50px;
+}
