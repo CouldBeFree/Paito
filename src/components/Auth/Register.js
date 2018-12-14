@@ -1,5 +1,6 @@
 import React from 'react';
-import { Row, Col, Button, Form, FormGroup, Input } from 'reactstrap';
+import { Row, Col, Button, Form, FormGroup, Input, Alert } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import '../App.css';
 
 class Register extends React.Component {
@@ -23,6 +24,8 @@ class Register extends React.Component {
         }
     };
 
+    dispplayErrors = errors => errors.map((err, i) => <p key={i}>{err.message}</p>);
+
     isFormValid = () => {
         let errors = [];
         let error;
@@ -33,8 +36,25 @@ class Register extends React.Component {
                 errors: errors.concat(error)
             });
             return false
+        } else if(!this.isPasswordValid(this.state)) {
+            error = { message: 'Password is invalid' };
+            this.setState({
+                errors: errors.concat(error)
+            });
+            return false
+        } else {
+            return true
         }
-        return true
+    };
+
+    isPasswordValid = ({ password, confirmPassword }) => {
+        if(password.length < 6 || confirmPassword < 6){
+            return false
+        } else if(password !== confirmPassword){
+            return false
+        } else{
+            return true
+        }
     };
 
     isFormEmpty = ({ userName, password, confirmPassword, email, checked }) => {
@@ -52,6 +72,8 @@ class Register extends React.Component {
     };
 
     render(){
+        const { errors } = this.state;
+
         return(
             <div className="main-wrapper">
                 <Row>
@@ -77,6 +99,13 @@ class Register extends React.Component {
                             </FormGroup>
                             <Button onClick={this.handleSubmit}>Submit</Button>
                         </Form>
+                        <Link to="/login">LOGIN NOW</Link>
+                        {errors.length > 0 && (
+                            <Alert color="danger" className="text-center">
+                                <h3>Something wrong</h3>
+                                {this.dispplayErrors(errors)}
+                            </Alert>
+                        )}
                     </Col>
                     <Col xs="9">
 
