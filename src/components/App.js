@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Router, Route, Link} from 'react-router-dom';
-//Reactstrap
 import { Row, Col } from 'reactstrap';
-//Components
 import Home from './Home/Home';
 import Dashboard from './Dashboard/Dashboard';
 import Trading from './Trading/Exchange';
@@ -13,14 +11,11 @@ import Wallet from './My wallet/Wallet';
 import Exchange from './Trading/Exchange';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
-//Redux
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware} from 'redux';
+import store from '../store';
 
 import createBrowserHistory from 'history/createBrowserHistory';
 import './App.css';
-
-const store = createStore(() => [], {}, applyMiddleware());
 
 const customHistory = createBrowserHistory();
 

@@ -2,6 +2,8 @@ import React from 'react';
 import { Row, Col, Button, Form, FormGroup, Input, Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions'
 import '../App.css';
 
 class Register extends React.Component {
@@ -31,7 +33,9 @@ class Register extends React.Component {
             password: this.state.password
         };
 
-        axios.post('http://localhost:5000/api/users/register', user)
+        this.props.registerUser(user)
+
+        /*axios.post('http://localhost:5000/api/users/register', user)
             .then(res => console.log(res.data))
             .catch(err => {
                 console.log(err.response.data);
@@ -39,7 +43,7 @@ class Register extends React.Component {
                 this.setState({
                     errors: errors.concat(error)
                 })
-            })
+            })*/
     };
 
     dispplayErrors = errors => errors.map((err, i) => <p key={i}>{err.message} {err.email}</p>);
@@ -95,7 +99,7 @@ class Register extends React.Component {
         return(
             <div className="main-wrapper">
                 <Row>
-                    <Col xs="3">
+                    <Col xs="12">
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <Input type="text" name="userName" placeholder="Name" onChange={this.handleChange}/>
@@ -125,7 +129,7 @@ class Register extends React.Component {
                             </Alert>
                         )}
                     </Col>
-                    <Col xs="9">
+                    <Col xs="12">
 
                     </Col>
                 </Row>
@@ -134,4 +138,4 @@ class Register extends React.Component {
     }
 }
 
-export default Register;
+export default connect(null, { registerUser })(Register);
