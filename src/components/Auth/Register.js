@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Button, Form, FormGroup, Input, Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../App.css';
 
 class Register extends React.Component {
@@ -19,12 +20,29 @@ class Register extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        let errors = [];
+        let error;
         if(this.isFormValid()){
             console.log('True')
         }
+        const user = {
+            name: this.state.userName,
+            email: this.state.email,
+            password: this.state.password
+        };
+
+        axios.post('http://localhost:5000/api/users/register', user)
+            .then(res => console.log(res.data))
+            .catch(err => {
+                console.log(err.response.data);
+                error = err.response.data;
+                this.setState({
+                    errors: errors.concat(error)
+                })
+            })
     };
 
-    dispplayErrors = errors => errors.map((err, i) => <p key={i}>{err.message}</p>);
+    dispplayErrors = errors => errors.map((err, i) => <p key={i}>{err.message} {err.email}</p>);
 
     isFormValid = () => {
         let errors = [];
@@ -78,9 +96,9 @@ class Register extends React.Component {
             <div className="main-wrapper">
                 <Row>
                     <Col xs="3">
-                        <Form>
+                        <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
-                                <Input type="password" name="userName" placeholder="Name" onChange={this.handleChange}/>
+                                <Input type="text" name="userName" placeholder="Name" onChange={this.handleChange}/>
                             </FormGroup>
                             <FormGroup>
                                 <Input type="email" name="email" placeholder="Email" onChange={this.handleChange}/>
@@ -97,7 +115,7 @@ class Register extends React.Component {
                                     Accept Terms & Conditions
                                 </label>
                             </FormGroup>
-                            <Button onClick={this.handleSubmit}>Submit</Button>
+                            <Button>Submit</Button>
                         </Form>
                         <Link to="/login">LOGIN NOW</Link>
                         {errors.length > 0 && (
