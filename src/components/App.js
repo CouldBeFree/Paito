@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Router, Route} from 'react-router-dom';
+import {Router, Route, Switch} from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import Home from './Home/Home';
 import Dashboard from './Dashboard/Dashboard';
@@ -17,6 +17,7 @@ import store from '../store';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import { setCurrentUser, logoutUser } from "../actions/authActions";
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 import createBrowserHistory from 'history/createBrowserHistory';
 import './App.css';
@@ -62,16 +63,32 @@ class App extends Component {
                                     <Sidebar/>
                                 </Col>
                                 <Col xs="9">
-                                    <Route exact path="/" component={Home} />
                                     <Route exact path="/register" component={Register} />
                                     <Route exact path="/login" component={Login} />
-                                    <Route path="/dashboard" component={Dashboard} />
-                                    <Route path="/trading" component={Trading} />
-                                    <Route path="/marketcap" component={MarketCap}/>
-                                    <Route path="/ico" component={Ico}/>
-                                    <Route path="/buyandsell" component={BuyAndSell}/>
-                                    <Route path="/wallet" component={Wallet}/>
-                                    <Route path="/exchange" component={Exchange}/>
+                                    <Switch>
+                                        <PrivateRoute exact path="/" component={Home} />
+                                    </Switch>
+                                    <Switch>
+                                        <PrivateRoute path="/dashboard" component={Dashboard} />
+                                    </Switch>
+                                    <Switch>
+                                        <PrivateRoute path="/trading" component={Trading} />
+                                    </Switch>
+                                    <Switch>
+                                        <PrivateRoute path="/marketcap" component={MarketCap}/>
+                                    </Switch>
+                                    <Switch>
+                                        <PrivateRoute path="/ico" component={Ico}/>
+                                    </Switch>
+                                    <Switch>
+                                        <PrivateRoute path="/buyandsell" component={BuyAndSell}/>
+                                    </Switch>
+                                    <Switch>
+                                        <PrivateRoute path="/wallet" component={Wallet}/>
+                                    </Switch>
+                                    <Switch>
+                                        <PrivateRoute path="/exchange" component={Exchange}/>
+                                    </Switch>
                                 </Col>
                             </Row>
                         </div>

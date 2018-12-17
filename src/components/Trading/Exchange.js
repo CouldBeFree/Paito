@@ -5,7 +5,7 @@ class Exchange extends React.Component {
     render(){
         return(
             <div>
-                <h1>Exchange</h1>
+                <h1>Trading</h1>
             </div>
         )
     }
