@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Button, Form, FormGroup, Input, Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions'
 import '../App.css';
@@ -16,14 +16,21 @@ class Register extends React.Component {
         errors: []
     };
 
+    componentWillReceiveProps(nextProps) {
+        let errors = [];
+        let error = nextProps.error;
+
+        if(nextProps.error){
+            this.setState({errors: errors.concat(error)})
+        }
+    }
+
     handleChange = (e) => {
         this.setState({ [e.target.name] : e.target.value })
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let errors = [];
-        let error;
         if(this.isFormValid()){
             console.log('True')
         }
@@ -33,20 +40,10 @@ class Register extends React.Component {
             password: this.state.password
         };
 
-        this.props.registerUser(user)
-
-        /*axios.post('http://localhost:5000/api/users/register', user)
-            .then(res => console.log(res.data))
-            .catch(err => {
-                console.log(err.response.data);
-                error = err.response.data;
-                this.setState({
-                    errors: errors.concat(error)
-                })
-            })*/
+        this.props.registerUser(user, this.props.history);
     };
 
-    dispplayErrors = errors => errors.map((err, i) => <p key={i}>{err.message} {err.email}</p>);
+    displayErrors = errors => errors.map((err, i) => <p key={i}>{err.message} {err.email}</p>);
 
     isFormValid = () => {
         let errors = [];
@@ -117,7 +114,7 @@ class Register extends React.Component {
                                 <label>
                                     <Input name="checked" type="checkbox" onChange={this.handleCheckbox} />
                                     Accept Terms & Conditions
-                                </label>
+                                </label>registerUser
                             </FormGroup>
                             <Button>Submit</Button>
                         </Form>
@@ -125,7 +122,7 @@ class Register extends React.Component {
                         {errors.length > 0 && (
                             <Alert color="danger" className="text-center">
                                 <h3>Something wrong</h3>
-                                {this.dispplayErrors(errors)}
+                                {this.displayErrors(errors)}
                             </Alert>
                         )}
                     </Col>
@@ -138,4 +135,9 @@ class Register extends React.Component {
     }
 }
 
-export default connect(null, { registerUser })(Register);
+const mapStateToProps = state => ({
+    auth: state.auth,
+    error: state.error
+});
+
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));
