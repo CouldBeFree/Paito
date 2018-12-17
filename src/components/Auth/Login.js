@@ -1,6 +1,8 @@
 import React from 'react';
 import { Row, Col, Button, Form, FormGroup, Input, Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/authActions';
 import '../App.css';
 
 class Login extends React.Component {
@@ -10,13 +12,36 @@ class Login extends React.Component {
         errors: []
     };
 
+    componentWillReceiveProps(nextProps) {
+        let errors = [];
+        let error = nextProps.error;
+
+        if(nextProps.auth.isAuthenticated){
+            this.props.history.push('/')
+        }
+
+        if(nextProps.error){
+            this.setState({errors: errors.concat(error)})
+        }
+    }
+
     handleChange = (e) => {
         this.setState({ [e.target.name] : e.target.value })
     };
 
     handleSubmit = (e) => {
+        const { email, password } = this.state;
         e.preventDefault();
+
+        const user = {
+            email: email,
+            password: password
+        };
+
+        this.props.loginUser(user);
     };
+
+    displayErrors = errors => errors.map((err, i) => <p key={i}>{err.message} {err.email}</p>);
 
     render(){
         const { errors } = this.state;
@@ -38,7 +63,7 @@ class Login extends React.Component {
                         {errors.length > 0 && (
                             <Alert color="danger" className="text-center">
                                 <h3>Something wrong</h3>
-                                {this.dispplayErrors(errors)}
+                                {this.displayErrors(errors)}
                             </Alert>
                         )}
                     </Col>
@@ -51,4 +76,9 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);

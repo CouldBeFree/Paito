@@ -13,11 +13,21 @@ import Login from './Auth/Login';
 import Register from './Auth/Register';
 import {Provider} from 'react-redux';
 import store from '../store';
+import setAuthToken from '../utils/setAuthToken';
+import jwt_decode from 'jwt-decode';
+import { setCurrentUser } from "../actions/authActions";
 
 import createBrowserHistory from 'history/createBrowserHistory';
 import './App.css';
 
 const customHistory = createBrowserHistory();
+
+// Check for token
+if(localStorage.jwtToken){
+    setAuthToken(localStorage.jwtToken);
+    const decoded = jwt_decode(localStorage.jwtToken);
+    store.dispatch(setCurrentUser(decoded));
+}
 
 class App extends Component {
     render() {
