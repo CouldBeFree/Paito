@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Router, Route, Link} from 'react-router-dom';
+import {Router, Route} from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import Home from './Home/Home';
 import Dashboard from './Dashboard/Dashboard';
@@ -11,11 +11,12 @@ import Wallet from './My wallet/Wallet';
 import Exchange from './Trading/Exchange';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
+import Sidebar from './Sidebar/Sibebar';
 import {Provider} from 'react-redux';
 import store from '../store';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-import { setCurrentUser } from "../actions/authActions";
+import { setCurrentUser, logoutUser } from "../actions/authActions";
 
 import createBrowserHistory from 'history/createBrowserHistory';
 import './App.css';
@@ -27,6 +28,12 @@ if(localStorage.jwtToken){
     setAuthToken(localStorage.jwtToken);
     const decoded = jwt_decode(localStorage.jwtToken);
     store.dispatch(setCurrentUser(decoded));
+    // Check for expired token
+    const currentTime = Date.now() / 1000;
+    if(decoded.exp < currentTime){
+        store.dispatch(logoutUser());
+        window.location.href = '/login'
+    }
 }
 
 class App extends Component {
@@ -52,32 +59,7 @@ class App extends Component {
                         <div className="main-wrapper">
                             <Row>
                                 <Col xs="3">
-                                    <ul className="nav-holder">
-                                        <li className="nav-item">
-                                            <Link className="nav-anchor" to="/">Home</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-anchor" to="/dashboard">Dashboard</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-anchor" to="/trading">Trading</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-anchor" to="/marketcap">MarketCap</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-anchor" to="/ico">Ico</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-anchor" to="/buyandsell">Buy & Sell Crypto</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-anchor" to="/wallet">My Wallet</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-anchor" to="/exchange">Currency Exchange</Link>
-                                        </li>
-                                    </ul>
+                                    <Sidebar/>
                                 </Col>
                                 <Col xs="9">
                                     <Route exact path="/" component={Home} />
