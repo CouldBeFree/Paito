@@ -20,7 +20,7 @@ import { setCurrentUser, logoutUser } from "../actions/authActions";
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 import createBrowserHistory from 'history/createBrowserHistory';
-import './App.css';
+import './App.scss';
 
 const customHistory = createBrowserHistory();
 

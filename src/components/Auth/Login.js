@@ -3,7 +3,7 @@ import { Row, Col, Button, Form, FormGroup, Input, Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
-import '../App.css';
+import '../App.scss';
 
 class Login extends React.Component {
     state = {
@@ -47,28 +47,34 @@ class Login extends React.Component {
         const { errors } = this.state;
 
         return(
-            <div className="main-wrapper">
+            <div className="main-wrapper form-wrap">
+                <h4>Login Now</h4>
                 <Row>
-                    <Col xs="3">
-                        <Form onSubmit={this.handleSubmit}>
-                            <FormGroup>
-                                <Input type="email" name="email" placeholder="Email" onChange={this.handleChange}/>
-                            </FormGroup>
-                            <FormGroup>
-                                <Input type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
-                            </FormGroup>
-                            <Button>Submit</Button>
-                        </Form>
-                        <Link to="/register">REGISTER</Link>
-                        {errors.length > 0 && (
-                            <Alert color="danger" className="text-center">
-                                <h3>Something wrong</h3>
-                                {this.displayErrors(errors)}
-                            </Alert>
-                        )}
+                    <Col xs="5">
+                        <div className="form-holder">
+                            <h6 className='form-headline'>Login Now</h6>
+                            <Form onSubmit={this.handleSubmit}>
+                                <FormGroup>
+                                    <Input type="email" name="email" placeholder="Email" onChange={this.handleChange}/>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Input type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
+                                </FormGroup>
+                                <Button className="button-form">LOGIN NOW</Button>
+                            </Form>
+                            <Link to="/register" className="link">Register</Link>
+                            {errors.length > 0 && (
+                                <Alert color="danger" className="text-center">
+                                    <h3>Something wrong</h3>
+                                    {this.displayErrors(errors)}
+                                </Alert>
+                            )}
+                        </div>
                     </Col>
-                    <Col xs="9">
-
+                    <Col xs="7">
+                        <h1>Buy and sell coins at the cryptopic without additional fees</h1>
+                        <p>Proin non tortor phaetra nisi ulticres rhonus. Quisique posuere ut mi et viverra. Nunc lorem
+                            odio, aliquam vei ipsum vei, posuere augue. Sed convillis dul ut erat consequat. In sodales saplen ornare</p>
                     </Col>
                 </Row>
             </div>

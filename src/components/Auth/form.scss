@@ -1,0 +1,49 @@
+.form-wrap{
+  background: #EAEFF3;
+  position: relative;
+  padding: 30px;
+
+  &:after{
+    content: '';
+    display: block;
+    width: 15px;
+    height: 100%;
+    background: #EAEFF3;
+    position: absolute;
+    right: -15px;
+    top: 0;
+  }
+
+  h4{
+    margin-bottom: 20px;
+  }
+
+  .button-form{
+    background: #1D9278;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  .link{
+    color: white;
+    text-transform: capitalize;
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+  .form-holder{
+    background: #3A4352;
+    padding: 30px;
+  }
+
+  .form-headline{
+    color: white;
+    margin-bottom: 30px;
+  }
+
+  .form-group, .button-form{
+    margin-bottom: 2rem;
+  }
+}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions'
-import '../App.css';
+import '../App.scss';
 
 class Register extends React.Component {
     state = {
@@ -12,7 +12,6 @@ class Register extends React.Component {
         password: '',
         confirmPassword: '',
         email: '',
-        checked: false,
         errors: []
     };
 
@@ -80,54 +79,44 @@ class Register extends React.Component {
           return !userName.length || !email.length || !confirmPassword.length || !password.length || !checked
     };
 
-    handleCheckbox = (event) => {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
-    };
-
     render(){
         const { errors } = this.state;
 
         return(
-            <div className="main-wrapper">
+            <div className="main-wrapper form-wrap">
+                <h4>Register Now</h4>
                 <Row>
-                    <Col xs="12">
-                        <Form onSubmit={this.handleSubmit}>
-                            <FormGroup>
-                                <Input type="text" name="userName" placeholder="Name" onChange={this.handleChange}/>
-                            </FormGroup>
-                            <FormGroup>
-                                <Input type="email" name="email" placeholder="Email" onChange={this.handleChange}/>
-                            </FormGroup>
-                            <FormGroup>
-                                <Input type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
-                            </FormGroup>
-                            <FormGroup>
-                                <Input type="password" name="confirmPassword" placeholder="Repeat password" onChange={this.handleChange}/>
-                            </FormGroup>
-                            <FormGroup>
-                                <label>
-                                    <Input name="checked" type="checkbox" onChange={this.handleCheckbox} />
-                                    Accept Terms & Conditions
-                                </label>registerUser
-                            </FormGroup>
-                            <Button>Submit</Button>
-                        </Form>
-                        <Link to="/login">LOGIN NOW</Link>
-                        {errors.length > 0 && (
-                            <Alert color="danger" className="text-center">
-                                <h3>Something wrong</h3>
-                                {this.displayErrors(errors)}
-                            </Alert>
-                        )}
+                    <Col xs="5">
+                        <div className="form-holder">
+                            <h6 className='form-headline'>Register Now</h6>
+                            <Form onSubmit={this.handleSubmit}>
+                                <FormGroup>
+                                    <Input type="text" name="userName" placeholder="Name" onChange={this.handleChange}/>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Input type="email" name="email" placeholder="Email" onChange={this.handleChange}/>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Input type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Input type="password" name="confirmPassword" placeholder="Repeat password" onChange={this.handleChange}/>
+                                </FormGroup>
+                                <Button className="button-form">Submit</Button>
+                            </Form>
+                            <Link to="/login" className="link">LOGIN NOW</Link>
+                            {errors.length > 0 && (
+                                <Alert color="danger" className="text-center">
+                                    <h3>Something wrong</h3>
+                                    {this.displayErrors(errors)}
+                                </Alert>
+                            )}
+                        </div>
                     </Col>
-                    <Col xs="12">
-
+                    <Col xs="7">
+                        <h1>Buy and sell coins at the cryptopic without additional fees</h1>
+                        <p>Proin non tortor phaetra nisi ulticres rhonus. Quisique posuere ut mi et viverra. Nunc lorem
+                            odio, aliquam vei ipsum vei, posuere augue. Sed convillis dul ut erat consequat. In sodales saplen ornare</p>
                     </Col>
                 </Row>
             </div>
