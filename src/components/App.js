@@ -58,11 +58,11 @@ class App extends Component {
                         </Row>
                     </div>*/}
                         <div className="main-wrapper">
-                            <Row>
-                                <Col xs="3">
+                            <Row className="child">
+                                <Col xs="3" className="sidebar">
                                     <Sidebar/>
                                 </Col>
-                                <Col xs="9">
+                                <Col xs="9" className="wrap">
                                     <Route exact path="/register" component={Register} />
                                     <Route exact path="/login" component={Login} />
                                     <Switch>

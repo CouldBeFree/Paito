@@ -1,0 +1,17 @@
+.nav-item{
+  color: #ffffff;
+
+  a{
+    color: inherit;
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+
+.nav-holder{
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}

@@ -13,6 +13,7 @@ class Sibebar extends React.Component{
     render(){
         return(
             <ul className="nav-holder">
+                <li className="nav-item">MAIN</li>
                 <li className="nav-item">
                     <Link className="nav-anchor" to="/">Home</Link>
                 </li>

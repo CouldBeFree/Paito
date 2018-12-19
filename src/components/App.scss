@@ -1,1 +1,21 @@
+.wrap{
+  background: #EAEFF3;
+}
+
+.sidebar{
+  background: #3A4352;
+}
+
+.child{
+  min-height: inherit;
+}
+
+.main-wrapper{
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  min-height: 100vh;
+}
+
 @import 'Auth/form';
+@import 'Sidebar/sibebar';

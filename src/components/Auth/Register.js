@@ -32,6 +32,8 @@ class Register extends React.Component {
         e.preventDefault();
         if(this.isFormValid()){
             console.log('True')
+        } else{
+            return false
         }
         const user = {
             name: this.state.userName,
@@ -104,7 +106,7 @@ class Register extends React.Component {
                                 </FormGroup>
                                 <Button className="button-form">Submit</Button>
                             </Form>
-                            <Link to="/login" className="link">LOGIN NOW</Link>
+                            <Link to="/login" className="link">Login now</Link>
                             {errors.length > 0 && (
                                 <Alert color="danger" className="text-center">
                                     <h3>Something wrong</h3>
