@@ -38,10 +38,34 @@ class Login extends React.Component {
             password: password
         };
 
-        this.props.loginUser(user);
+        if(this.isFormValid()){
+            this.props.loginUser(user);
+            return true
+        } else{
+            return false
+        }
     };
 
-    displayErrors = errors => errors.map((err, i) => <p key={i}>{err.message} {err.email}</p>);
+    isFormValid = () => {
+        let errors = [];
+        let error;
+
+        if(this.isFormEmpty(this.state)){
+            error = { message: 'All fields must be filled' };
+            this.setState({
+                errors: errors.concat(error)
+            });
+            return false
+        } else {
+            return true
+        }
+    };
+
+    displayErrors = errors => errors.map((err, i) => <p key={i}>{err.message} {err.email} {err.password}</p>);
+
+    isFormEmpty = ({ password, email}) => {
+        return !email.length || !password.length
+    };
 
     render(){
         const { errors } = this.state;
@@ -84,7 +108,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    errors: state.errors
+    error: state.error
 });
 
 export default connect(mapStateToProps, { loginUser })(Login);

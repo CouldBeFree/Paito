@@ -60,7 +60,7 @@ class App extends Component {
                         <div className="main-wrapper">
                             <Row className="child">
                                 <Col xs="3" className="sidebar">
-                                    <Sidebar/>
+                                    <Sidebar />
                                 </Col>
                                 <Col xs="9" className="wrap">
                                     <Route exact path="/register" component={Register} />

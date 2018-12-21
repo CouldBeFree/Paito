@@ -7,6 +7,10 @@
     &:hover{
       text-decoration: none;
     }
+
+    &.active{
+      color: red;
+    }
   }
 }
 

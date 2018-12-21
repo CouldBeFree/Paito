@@ -31,7 +31,8 @@ class Register extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if(this.isFormValid()){
-            console.log('True')
+            console.log('True');
+            return true
         } else{
             return false
         }
