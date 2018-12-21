@@ -11,34 +11,33 @@ class Sibebar extends React.Component{
     };
 
     render(){
-        const { location } = this.props;
-        const isActive = (path, match, location) => !!(match || path === location.pathname);
+
         return(
             <ul className="nav-holder">
                 <li className="nav-item">MAIN</li>
                 <li className="nav-item">
-                    <NavLink activeClassName="active" to="/">Home</NavLink>
+                    <NavLink exact to="/">Home</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink activeClassName="active" to="/dashboard">Dashboard</NavLink>
+                    <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink activeClassName="active" to="/trading">Trading</NavLink>
+                    <NavLink to="/trading">Trading</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink  activeClassName="active" to="/marketcap">MarketCap</NavLink>
+                    <NavLink to="/marketcap">MarketCap</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink  activeClassName="active" to="/ico">Ico</NavLink>
+                    <NavLink to="/ico">Ico</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink  activeClassName="active" to="/buyandsell">Buy & Sell Crypto</NavLink>
+                    <NavLink to="/buyandsell">Buy & Sell Crypto</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink  activeClassName="active" to="/wallet">My Wallet</NavLink>
+                    <NavLink to="/wallet">My Wallet</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink  activeClassName="active" to="/exchange">Currency Exchange</NavLink>
+                    <NavLink to="/exchange">Currency Exchange</NavLink>
                 </li>
                 <li className="nav-item">
                     <Button onClick={this.onLogoutUser}>Logout</Button>
