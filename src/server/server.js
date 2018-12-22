@@ -2,18 +2,18 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const cors = require('cors');
+
+const app = express();
+app.use(cors());
 
 const users = require('./routes/api/user');
 const profile = require('./routes/api/profile');
 
-const app = express();
-
-// use it before all route definitions
-// app.use(cors({origin: 'http://localhost:5000'}));
-
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
     // Request methods you wish to allow
@@ -27,6 +27,13 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
 
     // Pass to next layer of middleware
+    next();
+});
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
 });
 

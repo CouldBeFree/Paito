@@ -8,14 +8,14 @@ class Home extends React.Component {
     };
 
     componentDidMount(){
-        /*axios.get('https://min-api.cryptocompare.com/data/top/mktcapfull?limit=30&page=3&tsym=EUR&extraParams=paito')
+        // delete axios.defaults.headers.common["Authorization"];
+        axios.get('https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=Kraken')
             .then(res => {
                 console.log(res.data)
-            });*/
-        const url = "https://min-api.cryptocompare.com/data/all/includedexchanges"; // site that doesn’t send Access-Control-*
-        fetch(url)
-            .then(response =>response.text())
-            .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     render(){
