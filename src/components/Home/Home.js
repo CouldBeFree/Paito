@@ -1,25 +1,23 @@
 import React from 'react';
-import '../App.scss';
+import Modal from './Modal'
+import Card from './card';
 import axios from 'axios';
 
 class Home extends React.Component {
-
-    componentDidMount(){
-        axios.get('https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=Kraken')
-            .then(res => {
-                console.log(res.data)
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
-
+    state = {
+        // currency: []
+        // addittionalData: []
+    };
     
     render(){
+        // const { currency } = this.state;
         return(
             <div>
-                <h1>Home</h1>
+                <h2>Your Currencies</h2>
+                <p>The currencies you have purchased are here</p>
+                <button className="add-button"><i className="fas fa-plus"></i></button>
+            {/*<Card currency={currency}/>*/}
+            <Modal/>
             </div>
         )
     }

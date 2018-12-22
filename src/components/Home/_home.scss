@@ -1,0 +1,55 @@
+.card-holder{
+  list-style-type: none;
+}
+
+.add-button{
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: .4s;
+  border: 1px solid transparent;
+
+  &:hover{
+    transform: rotate(180deg);
+  }
+
+  &:focus{
+    outline: 0;
+  }
+}
+
+.modal-block{
+  width: 40vw;
+  margin: 0 auto;
+
+  .close-modal{
+    cursor: pointer;
+    border: none;
+    background: transparent;
+
+    &:focus{
+      outline: none;
+    }
+  }
+
+  .button-holder{
+    text-align: right;
+  }
+
+  .coin-list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    height: 90vh;
+    overflow-x: scroll;
+
+    li{
+      background: white;
+      width: 100%;
+      padding: .5rem;
+      margin-bottom: .5rem;
+      cursor: pointer;
+    }
+  }
+}
