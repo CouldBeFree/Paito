@@ -23,20 +23,30 @@ class Modal extends React.Component{
             });
     }
 
+    filterCoins = (e) => {
+        // const current = e.target.value;
+        /*this.setState({
+            ...this.state.data.map((item) => {
+                return Object.keys(item).filter((cur) => {
+                    return cur = current
+                })
+            })
+        })*/
+    };
+
     render(){
         const { data } = this.state;
         return(
             <div className="modal-block">
                 {
-                    this.state.loading ? <img  src={preloader} alt="preloader"/> :
+                    this.state.loading ? <img className="preloader" src={preloader} alt="preloader"/> :
                         <div>
                             <div className="d-flex justify-content-between">
-                                <input type="text"/>
+                                <input onChange={this.filterCoins} type="text"/>
                                 <button className="close-modal"><i className="fas fa-times"></i></button>
                             </div>
                             <ul className="coin-list">
                                 {data.map((item) => {
-                                    console.log(item);
                                     return Object.keys(item).map(function(cur) {
                                         return <li key={cur}>{cur}</li>
                                     });

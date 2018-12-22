@@ -1,14 +1,12 @@
 import React from 'react';
 import Modal from './Modal'
 import Card from './card';
-import axios from 'axios';
 
 class Home extends React.Component {
     state = {
-        // currency: []
-        // addittionalData: []
+
     };
-    
+
     render(){
         // const { currency } = this.state;
         return(
