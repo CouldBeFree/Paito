@@ -3,12 +3,8 @@ import '../App.scss';
 import axios from 'axios';
 
 class Home extends React.Component {
-    state = {
-      crypto: {}
-    };
 
     componentDidMount(){
-        // delete axios.defaults.headers.common["Authorization"];
         axios.get('https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=Kraken')
             .then(res => {
                 console.log(res.data)
