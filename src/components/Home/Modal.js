@@ -5,16 +5,16 @@ import preloader from '../../preloader.gif';
 class Modal extends React.Component{
     state = {
         loading: true,
-        data: []
+        data: null
     };
 
     componentDidMount(){
         axios.get('https://min-api.cryptocompare.com/data/all/coinlist')
             .then(res => {
-                console.log(res.data);
-                const newData = this.state.data.concat(res.data.Data);
+                console.log(res.data.Data);
+                const newData = res.data.Data;
                 this.setState({
-                    data: newData,
+                    data: Object.keys(newData),
                     loading: false
                 })
             })
@@ -24,14 +24,12 @@ class Modal extends React.Component{
     }
 
     filterCoins = (e) => {
-        // const current = e.target.value;
-        /*this.setState({
-            ...this.state.data.map((item) => {
-                return Object.keys(item).filter((cur) => {
-                    return cur = current
-                })
-            })
-        })*/
+        let updatedList = [...this.state.data];
+        updatedList.filter(function(item){
+            return item.toLowerCase().search(
+                e.target.value.toLowerCase()) !== -1;
+        });
+        this.setState({data: updatedList});
     };
 
     render(){
@@ -46,11 +44,11 @@ class Modal extends React.Component{
                                 <button className="close-modal"><i className="fas fa-times"></i></button>
                             </div>
                             <ul className="coin-list">
-                                {data.map((item) => {
-                                    return Object.keys(item).map(function(cur) {
-                                        return <li key={cur}>{cur}</li>
-                                    });
-                                })}
+                                {
+                                    data.map((item) => {
+                                        return <li key={item}>{item}</li>
+                                    })
+                                }
                             </ul>
                         </div>
                 }
