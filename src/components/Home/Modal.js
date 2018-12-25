@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import preloader from '../../preloader.gif';
+import { connect } from 'react-redux';
+import { getCoins } from '../../actions/getCoins';
 
 class Modal extends React.Component{
     state = {
@@ -9,7 +11,7 @@ class Modal extends React.Component{
     };
 
     componentDidMount(){
-        axios.get('https://min-api.cryptocompare.com/data/all/coinlist')
+        /*axios.get('https://min-api.cryptocompare.com/data/all/coinlist')
             .then(res => {
                 console.log(res.data.Data);
                 const newData = res.data.Data;
@@ -20,11 +22,13 @@ class Modal extends React.Component{
             })
             .catch(function (error) {
                 console.log(error);
-            });
+            });*/
+        // this.props.getCoins();
     }
 
     filterCoins = (e) => {
         let updatedList = [...this.state.data];
+        console.log(updatedList);
         updatedList.filter(function(item){
             return item.toLowerCase().search(
                 e.target.value.toLowerCase()) !== -1;
