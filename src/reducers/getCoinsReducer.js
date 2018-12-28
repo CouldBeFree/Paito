@@ -1,4 +1,4 @@
-import { GET_COINS } from '../actions/types';
+import { GET_COINS, LOADING } from '../actions/types';
 
 const initialState = {
     coins: {}
@@ -9,7 +9,12 @@ export default function (state = initialState, action) {
         case GET_COINS:
             return{
                 ...state,
-                coins: action.payload
+                coins: action.payload,
+                ...state.loading = false
+            };
+        case LOADING:
+            return{
+                ...state.loading = true
             };
         default:
             return state;

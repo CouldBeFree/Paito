@@ -11,18 +11,6 @@ class Modal extends React.Component{
     };
 
     componentDidMount(){
-        /*axios.get('https://min-api.cryptocompare.com/data/all/coinlist')
-            .then(res => {
-                console.log(res.data.Data);
-                const newData = res.data.Data;
-                this.setState({
-                    data: Object.keys(newData),
-                    loading: false
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });*/
         this.props.getCoins();
     }
 
@@ -37,9 +25,11 @@ class Modal extends React.Component{
     };
 
     render(){
-        const { data } = this.state;
+        // const { coins, loading } = this.props;
+        {console.log(this.props.coins.loading)}
         return(
             <div className="modal-block">
+                {this.props.coins.loading ? <img className="preloader" src={preloader} alt="preloader"/> : null}
                 {
                     this.state.loading ? <img className="preloader" src={preloader} alt="preloader"/> :
                         <div>
@@ -48,11 +38,12 @@ class Modal extends React.Component{
                                 <button className="close-modal"><i className="fas fa-times"></i></button>
                             </div>
                             <ul className="coin-list">
-                                {
+                                {/*{
                                     data.map((item) => {
                                         return <li key={item}>{item}</li>
                                     })
-                                }
+                                }*/}
+                                <li>Status ok</li>
                             </ul>
                         </div>
                 }
@@ -62,8 +53,10 @@ class Modal extends React.Component{
 }
 
 const mapStateToProps = state => {
-
-    return{}
+    return{
+        loading: state.loading,
+        coins: state.coins
+    }
 };
 
 export default connect(mapStateToProps, {getCoins})(Modal);

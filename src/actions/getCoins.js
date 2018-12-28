@@ -1,4 +1,4 @@
-import { GET_COINS } from './types';
+import { GET_COINS, LOADING } from './types';
 import axios from 'axios';
 
 // Get coins
@@ -9,9 +9,16 @@ export const getCoinsAsync = (val) =>{
     }
 };
 
+export const loading = () => {
+    return {
+        type: LOADING
+    }
+};
+
 export const getCoins = () => {
     return dispatch => {
-        axios.get('https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=&e=Kraken')
+        dispatch(loading());
+        axios.get('https://min-api.cryptocompare.com/data/all/coinlist')
             .then(res => {
                 dispatch(getCoinsAsync(res))
             })
@@ -20,12 +27,3 @@ export const getCoins = () => {
             })
     }
 };
-
-/*
-axios.get('https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=&e=Kraken')
-    .then(res => {
-        console.log(res.data)
-    })
-    .catch(function (error) {
-        console.log(error);
-    });*/
