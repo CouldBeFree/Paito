@@ -23,7 +23,7 @@ class Modal extends React.Component{
             .catch(function (error) {
                 console.log(error);
             });*/
-        // this.props.getCoins();
+        this.props.getCoins();
     }
 
     filterCoins = (e) => {
@@ -61,4 +61,9 @@ class Modal extends React.Component{
     }
 }
 
-export default Modal;
+const mapStateToProps = state => {
+
+    return{}
+};
+
+export default connect(mapStateToProps, {getCoins})(Modal);
