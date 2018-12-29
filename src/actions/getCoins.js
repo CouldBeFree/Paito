@@ -18,7 +18,7 @@ export const loading = (val) => {
 
 export const getCoins = () => {
     return dispatch => {
-        // dispatch(loading(true));
+        dispatch(loading(true));
         axios.get('https://min-api.cryptocompare.com/data/all/coinlist')
             .then(res => {
                 dispatch(getCoinsAsync(res.data.Data));

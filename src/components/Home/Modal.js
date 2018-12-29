@@ -5,8 +5,8 @@ import { getCoins } from '../../actions/getCoins';
 
 class Modal extends React.Component{
     state = {
-        data: null,
-        items: []
+        items: [],
+        innerLoading: false
     };
 
     componentDidMount(){
@@ -14,22 +14,28 @@ class Modal extends React.Component{
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
+        const list = nextProps.coinsList.coins;
+        const listArr = Object.keys(list);
+        this.setState({
+            items: listArr
+        })
     }
 
     filterCoins = (e) => {
-        let updatedList = [...this.state.data];
-        updatedList.filter(function(item){
+        const {coinsList} = this.props;
+        const list = coinsList.coins;
+        let listArr = Object.keys(list);
+        listArr = listArr.filter(function(item){
             return item.toLowerCase().search(
                 e.target.value.toLowerCase()) !== -1;
         });
-        this.setState({data: updatedList});
+        this.setState({
+            items: listArr
+        })
     };
 
     render(){
-        const {isLoading, coinsList} = this.props;
-        const list = coinsList.coins;
-        const listArr = Object.keys(list);
+        const {isLoading} = this.props;
         return(
             <div className="modal-block">
                 {
@@ -41,8 +47,8 @@ class Modal extends React.Component{
                             </div>
                             <ul className="coin-list">
                                 {
-                                    listArr.map((item) => {
-                                        return <li key={item}>{item}</li>
+                                    this.state.items.map((item, index) => {
+                                        return <li key={index}>{item}</li>
                                     })
                                 }
                             </ul>
