@@ -1,5 +1,6 @@
 import React from 'react';
 import preloader from '../../preloader.gif';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { getCoins } from '../../actions/getCoins';
 
@@ -20,6 +21,10 @@ class Modal extends React.Component{
             items: listArr
         })
     }
+
+    selectCoin = (e) => {
+
+    };
 
     filterCoins = (e) => {
         const {coinsList} = this.props;
@@ -48,7 +53,7 @@ class Modal extends React.Component{
                             <ul className="coin-list">
                                 {
                                     this.state.items.map((item, index) => {
-                                        return <li key={index}>{item}</li>
+                                        return <li onClick={e => this.selectCoin(item)} key={index}>{item}</li>
                                     })
                                 }
                             </ul>
