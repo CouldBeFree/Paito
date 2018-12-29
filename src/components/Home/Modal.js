@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import preloader from '../../preloader.gif';
 import { connect } from 'react-redux';
 import { getCoins } from '../../actions/getCoins';
@@ -25,20 +24,12 @@ class Modal extends React.Component{
         this.setState({data: updatedList});
     };
 
-    isEmpty = (obj) => {
-        for(let key in obj) {
-            if(obj.hasOwnProperty(key))
-                return false;
-        }
-        return true;
-    };
-
     render(){
-        console.log(this.props);
+        console.log(this.props.isLoading.loading);
         return(
             <div className="modal-block">
                 {
-                    this.props.coins.loading ? <img className="preloader" src={preloader} alt="preloader"/> :
+                    this.props.isLoading.loading ? <img className="preloader" src={preloader} alt="preloader"/> :
                         <div>
                             <div className="d-flex justify-content-between">
                                 <input onChange={this.filterCoins} type="text"/>
@@ -60,8 +51,9 @@ class Modal extends React.Component{
 }
 
 const mapStateToProps = state => {
+    console.log(state);
     return{
-        loading: state.loading,
+        isLoading: state.isLoading,
         coins: state.coins
     }
 };
