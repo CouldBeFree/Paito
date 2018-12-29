@@ -7,6 +7,6 @@ import loadingReducer from './loadingReducer';
 export default combineReducers({
     auth: authReducer,
     error: errorReducer,
-    coins: getCoinsReducer,
+    coinsList: getCoinsReducer,
     isLoading: loadingReducer
 })
