@@ -6,12 +6,13 @@ import { getCoins } from '../../actions/getCoins';
 
 class Modal extends React.Component{
     state = {
-        loading: true,
         data: null
     };
 
     componentDidMount(){
-        this.props.getCoins();
+        setTimeout(() => {
+            this.props.getCoins();
+        }, 2000)
     }
 
     filterCoins = (e) => {
@@ -24,14 +25,20 @@ class Modal extends React.Component{
         this.setState({data: updatedList});
     };
 
+    isEmpty = (obj) => {
+        for(let key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    };
+
     render(){
-        // const { coins, loading } = this.props;
-        {console.log(this.props.coins.loading)}
+        console.log(this.props);
         return(
             <div className="modal-block">
-                {this.props.coins.loading ? <img className="preloader" src={preloader} alt="preloader"/> : null}
                 {
-                    this.state.loading ? <img className="preloader" src={preloader} alt="preloader"/> :
+                    this.props.coins.loading ? <img className="preloader" src={preloader} alt="preloader"/> :
                         <div>
                             <div className="d-flex justify-content-between">
                                 <input onChange={this.filterCoins} type="text"/>

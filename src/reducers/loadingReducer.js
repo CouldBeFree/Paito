@@ -1,0 +1,1 @@
+import { GET_COINS, LOADING } from '../actions/types';

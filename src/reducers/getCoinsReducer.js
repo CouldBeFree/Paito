@@ -1,7 +1,8 @@
 import { GET_COINS, LOADING } from '../actions/types';
 
 const initialState = {
-    coins: {}
+    coins: {},
+    loading: true
 };
 
 export default function (state = initialState, action) {
@@ -9,12 +10,12 @@ export default function (state = initialState, action) {
         case GET_COINS:
             return{
                 ...state,
-                coins: action.payload,
-                ...state.loading = false
+                coins: action.payload
             };
         case LOADING:
             return{
-                ...state.loading = true
+                ...state,
+                loading: action.payload
             };
         default:
             return state;
