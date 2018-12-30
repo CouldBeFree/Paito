@@ -17,10 +17,19 @@ class Modal extends React.Component{
 
     componentWillReceiveProps(nextProps) {
         const list = nextProps.coinsList.coins;
-        const listArr = Object.keys(list);
+        let newCoins =[];
+        for (let key in list){
+            newCoins.push(list[key].CoinInfo.Name)
+        }
         this.setState({
-            items: listArr
-        })
+            items: newCoins
+        });
+        console.log(this.state);
+        //let values = list.map(e=> Object.values(e)[0].FullName);
+        // const listArr = Object.keys(list);
+        /*this.setState({
+            items: values
+        })*/
     }
 
     selectCoin = (e) => {

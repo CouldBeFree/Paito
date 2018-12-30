@@ -19,8 +19,9 @@ export const loading = (val) => {
 export const getCoins = () => {
     return dispatch => {
         dispatch(loading(true));
-        axios.get('https://min-api.cryptocompare.com/data/all/coinlist')
+        axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD')
             .then(res => {
+                console.log(res.data.Data);
                 dispatch(getCoinsAsync(res.data.Data));
                 dispatch(loading(false))
             })
