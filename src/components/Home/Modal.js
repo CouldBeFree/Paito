@@ -3,6 +3,7 @@ import preloader from '../../preloader.gif';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getCoins } from '../../actions/getCoins';
+import { selectedCoin } from '../../actions/selectedCoin';
 
 class Modal extends React.Component{
     state = {
@@ -23,7 +24,18 @@ class Modal extends React.Component{
     }
 
     selectCoin = (e) => {
-
+        axios.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${e}&tsym=USD`)
+            .then(res => {
+                const coin = {
+                    coinName: e,
+                    coinInfo : res.data.Data
+                };
+                console.log(res.data.Data);
+                this.props.selectedCoin(coin)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     };
 
     filterCoins = (e) => {
@@ -65,10 +77,11 @@ class Modal extends React.Component{
 }
 
 const mapStateToProps = state => {
+    console.log(state);
     return{
         isLoading: state.isLoading,
         coinsList: state.coinsList
     }
 };
 
-export default connect(mapStateToProps, {getCoins})(Modal);
+export default connect(mapStateToProps, {getCoins, selectedCoin})(Modal);

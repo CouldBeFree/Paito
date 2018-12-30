@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from './Modal'
-import Card from './card';
+// import Card from './card';
 
 class Home extends React.Component {
     state = {

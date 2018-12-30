@@ -1,8 +1,7 @@
-import { GET_COINS, LOADING } from '../actions/types';
+import { GET_COINS } from '../actions/types';
 
 const initialState = {
-    coins: {}/*,
-    loading: true*/
+    coins: {}
 };
 
 export default function (state = initialState, action) {
@@ -12,11 +11,6 @@ export default function (state = initialState, action) {
                 ...state,
                 coins: action.payload
             };
-        /*case LOADING:
-            return{
-                ...state,
-                loading: action.payload
-            };*/
         default:
             return state;
     }
