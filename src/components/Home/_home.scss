@@ -1,5 +1,15 @@
 .card-holder{
   list-style-type: none;
+  padding: 0;
+
+  .coin-image{
+    width: 50px;
+
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 
 .add-button{

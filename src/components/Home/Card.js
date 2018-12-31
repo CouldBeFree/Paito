@@ -15,10 +15,6 @@ class Card extends React.Component{
                     coinData: this.state.coinData.concat(item.coinInfo.CoinInfo)
                 })
             })
-        // console.log(Object.values(nextProps.selectedCoins));
-        /*this.setState({
-            selected: nextProps
-        })*/
     }
 
     render(){
@@ -26,12 +22,17 @@ class Card extends React.Component{
         return(
             <div>
                 <h1>Card</h1>
-                <ul className="card-holder">
+                <ul className="card-holder row">
                     {
                         isEmptyObj(coinData) ? 'Select your first coin' :
                             Object.values(coinData)
                                 .map(item => {
-                                    return <li key={item.Id}>{item.FullName}</li>
+                                    return <li key={item.Id} className="d-flex col-sm-3">
+                                        <p>{item.FullName}</p>
+                                        <div className="coin-image">
+                                            <img src={`https://www.cryptocompare.com/${item.ImageUrl}`} alt="image"/>
+                                        </div>
+                                    </li>
                                 })
                     }
                 </ul>
