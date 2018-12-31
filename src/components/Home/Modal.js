@@ -24,12 +24,6 @@ class Modal extends React.Component{
         this.setState({
             items: newCoins
         });
-        console.log(this.state);
-        //let values = list.map(e=> Object.values(e)[0].FullName);
-        // const listArr = Object.keys(list);
-        /*this.setState({
-            items: values
-        })*/
     }
 
     selectCoin = (e) => {
@@ -39,7 +33,6 @@ class Modal extends React.Component{
                     coinName: e,
                     coinInfo : res.data.Data
                 };
-                console.log(res.data.Data);
                 this.props.selectedCoin(coin)
             })
             .catch(err => {
@@ -50,13 +43,16 @@ class Modal extends React.Component{
     filterCoins = (e) => {
         const {coinsList} = this.props;
         const list = coinsList.coins;
-        let listArr = Object.keys(list);
-        listArr = listArr.filter(function(item){
+        let newCoins =[];
+        for (let key in list){
+            newCoins.push(list[key].CoinInfo.Name)
+        }
+        newCoins = newCoins.filter(function(item){
             return item.toLowerCase().search(
                 e.target.value.toLowerCase()) !== -1;
         });
         this.setState({
-            items: listArr
+            items: newCoins
         })
     };
 
