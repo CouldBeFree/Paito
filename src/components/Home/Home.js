@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from './Modal'
-// import Card from './card';
+import Card from './Card';
 
 class Home extends React.Component {
     state = {
@@ -20,7 +20,7 @@ class Home extends React.Component {
                 <h2>Your Currencies</h2>
                 <p>The currencies you have purchased are here</p>
                 <button className="add-button" onClick={this.modalHandler}><i className="fas fa-plus"></i></button>
-                {/*<Card currency={currency}/>*/}
+                <Card />
                 {isOpen ? <Modal/> : null}
             </div>
         )

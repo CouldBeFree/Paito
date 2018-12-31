@@ -82,7 +82,6 @@ class Modal extends React.Component{
 }
 
 const mapStateToProps = state => {
-    console.log(state);
     return{
         isLoading: state.isLoading,
         coinsList: state.coinsList

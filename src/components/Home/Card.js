@@ -1,17 +1,37 @@
 import React from 'react';
+import isEmptyObj from '../../utils/isEmptyObj'
+import {connect} from 'react-redux';
 
-const Card = ({ currency }) => (
-    <div>
-        <h1>Card</h1>
-        <ul className="card-holder">
-            {currency.map((item) => {
-                return <li key={item.RAW.LASTMARKET}>
-                    <p>{item.RAW.FROMSYMBOL}</p>
-                    <p>{`${item.RAW.PRICE} ${item.RAW.TOSYMBOL}`}</p>
-                    </li>
-            })}
-        </ul>
-    </div>
-);
+class Card extends React.Component{
+    state = {
+        selected: []
+    };
 
-export default Card;
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            selected: nextProps
+        })
+    }
+
+    render(){
+        return(
+            <div>
+                {console.log(this.props.selectedCoins)}
+                <h1>Card</h1>
+                <ul className="card-holder">
+                    {
+                        isEmptyObj(this.state.selected) ? 'true' : 'false'
+                    }
+                </ul>
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = state => {
+    return{
+        selectedCoins: state.selectedCoins
+    }
+};
+
+export default connect(mapStateToProps)(Card);
