@@ -65,7 +65,6 @@ class Modal extends React.Component{
                         <div>
                             <div className="d-flex justify-content-between">
                                 <input onChange={this.filterCoins} type="text"/>
-                                <button className="close-modal"><i className="fas fa-times"></i></button>
                             </div>
                             <ul className="coin-list">
                                 {

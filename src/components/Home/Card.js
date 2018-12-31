@@ -4,23 +4,35 @@ import {connect} from 'react-redux';
 
 class Card extends React.Component{
     state = {
-        selected: []
+        selected: [],
+        coinData: []
     };
 
     componentWillReceiveProps(nextProps){
-        this.setState({
+        nextProps.selectedCoins.selectedCoins
+            .map(item => {
+                this.setState({
+                    coinData: this.state.coinData.concat(item.coinInfo.CoinInfo)
+                })
+            })
+        // console.log(Object.values(nextProps.selectedCoins));
+        /*this.setState({
             selected: nextProps
-        })
+        })*/
     }
 
     render(){
+        const { selected, coinData } = this.state;
         return(
             <div>
-                {console.log(this.props.selectedCoins)}
                 <h1>Card</h1>
                 <ul className="card-holder">
                     {
-                        isEmptyObj(this.state.selected) ? 'true' : 'false'
+                        isEmptyObj(coinData) ? 'Select your first coin' :
+                            Object.values(coinData)
+                                .map(item => {
+                                    return <li key={item.Id}>{item.FullName}</li>
+                                })
                     }
                 </ul>
             </div>
