@@ -1,13 +1,33 @@
 .card-holder{
   list-style-type: none;
-  padding: 0;
+  padding-left: 15px;
 
-  .coin-image{
-    width: 50px;
+  li{
+    margin-top: 30px;
+  }
 
-    img{
-      width: 100%;
-      height: auto;
+  .content-wrap{
+    background: aquamarine;
+    padding: 20px;
+    border-radius: 10px;
+    height: 100%;
+
+    p{
+      color: #3A4352;
+      font-size: 18px;
+
+      &:last-child{
+        margin: 0;
+      }
+    }
+
+    .coin-image{
+      width: 50px;
+
+      img{
+        width: 100%;
+        height: auto;
+      }
     }
   }
 }

@@ -15,26 +15,26 @@ class Card extends React.Component{
                     coinData: this.state.coinData.concat(item.coinInfo)
                 })
             })
-        /*console.log(nextProps.selectedCoins.selectedCoins);
-        console.log(Object.values(nextProps.selectedCoins.selectedCoins
-            .map(item => item.coinInfo.CoinInfo.FullName)));*/
     }
 
     render(){
-        const { selected, coinData } = this.state;
+        const { coinData } = this.state;
         return(
             <div>
-                <h1>Card</h1>
                 <ul className="card-holder row">
                     {
                         isEmptyObj(coinData) ? 'Select your first coin' :
                             Object.values(coinData)
                                 .map(item => {
-                                    return <li key={item.CoinInfo.Id} className="d-flex col-sm-3">
-                                        <p>{item.CoinInfo.FullName}</p>
-                                        <p>{item.AggregatedData.PRICE}</p>
-                                        <div className="coin-image">
-                                            <img src={`https://www.cryptocompare.com/${item.CoinInfo.ImageUrl}`} alt="image"/>
+                                    return <li key={item.CoinInfo.Id} className="col-sm-3">
+                                        <div className="content-wrap d-flex justify-content-between align-items-center">
+                                            <div className="info">
+                                                <p>{item.CoinInfo.FullName}</p>
+                                                <p>{item.AggregatedData.PRICE} $</p>
+                                            </div>
+                                            <div className="coin-image">
+                                                <img src={`https://www.cryptocompare.com/${item.CoinInfo.ImageUrl}`} alt="image"/>
+                                            </div>
                                         </div>
                                     </li>
                                 })
