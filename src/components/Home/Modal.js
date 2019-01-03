@@ -27,13 +27,18 @@ class Modal extends React.Component{
     }
 
     selectCoin = (e) => {
+        console.log(e);
         axios.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${e}&tsym=USD`)
             .then(res => {
+                // console.log(res.data);
                 const coin = {
                     coinName: e,
                     coinInfo : res.data.Data
                 };
-                this.props.selectedCoin(coin)
+                if(res.data.Response === 'Success'){
+                    console.log('True');
+                    this.props.selectedCoin(coin)
+                }
             })
             .catch(err => {
                 console.log(err)
