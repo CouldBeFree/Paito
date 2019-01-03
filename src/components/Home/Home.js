@@ -1,6 +1,7 @@
 import React from 'react';
-import Modal from './Modal'
+import Modal from './Modal';
 import Card from './Card';
+import Marketdata from "./Marketdata";
 
 class Home extends React.Component {
     state = {
@@ -22,6 +23,7 @@ class Home extends React.Component {
                 <button className="add-button" onClick={this.modalHandler}><i className="fas fa-plus"></i></button>
                 <Card />
                 {isOpen ? <Modal/> : null}
+                <Marketdata />
             </div>
         )
     }
