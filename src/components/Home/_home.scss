@@ -38,6 +38,33 @@
 
 .data-list{
   list-style-type: none;
+  padding: 0;
+  background: white;
+
+  .red{
+    color: red;
+
+    .fas{
+      transform: rotate(180deg);
+    }
+  }
+
+  .green{
+    color: green;
+  }
+
+  li{
+    padding: 5px 10px;
+
+    &:not(:last-child){
+      border-bottom: 1px solid grey;
+    }
+  }
+
+  .head{
+    font-size: 16px;
+    font-weight: bold;
+  }
 
   span{
     flex-basis: 33.33%;
