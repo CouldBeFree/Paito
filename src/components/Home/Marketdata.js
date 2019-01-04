@@ -7,31 +7,7 @@ class Marketdata extends React.Component{
     state = {
         loadedData: [],
         loading: true,
-        chartData: {
-            labels: ['ETH', 'BTC', 'EOS', 'XPR', 'LTC', 'BCH'],
-            datasets:[
-                {
-                    label:'Population',
-                    data:[
-                        153.14,
-                        3833.51,
-                        0.359947,
-                        161.54,
-                        2.69,
-                        0.114041
-                    ],
-                    backgroundColor:[
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(255, 206, 86, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)',
-                        'rgba(255, 159, 64, 0.6)',
-                        'rgba(255, 99, 132, 0.6)'
-                    ]
-                }
-            ]
-        }
+        chartData: {}
     };
 
     componentDidMount(){
@@ -41,9 +17,24 @@ class Marketdata extends React.Component{
     getData = () => {
         axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD')
             .then(res => {
+                let coinName = Object.values(res.data.Data).map(item => item.CoinInfo.Name);
+                let coinPercentage = Object.values(res.data.Data).map(item => item.DISPLAY.USD.CHANGEPCTDAY);
                 this.setState({
                     loadedData: res.data.Data,
-                    loading: false
+                    labels: coinName,
+                    loading: false,
+                    chartData:{
+                        labels: coinName,
+                        datasets:[
+                            {
+                                label:'Population',
+                                data:coinPercentage,
+                                backgroundColor:[
+                                    'rgba(153, 102, 255, 0.6)'
+                                ]
+                            }
+                        ]
+                    }
                 });
             })
             .catch(err => {
@@ -81,7 +72,7 @@ class Marketdata extends React.Component{
                     </ul>
                 </div>
                 <div className="col-sm-7">
-                    <h1>Graph</h1>
+                    <p>Price change %</p>
                     <Line
                         data={this.state.chartData}
                     />
