@@ -12,6 +12,11 @@ class Marketdata extends React.Component{
 
     componentDidMount(){
         this.getData();
+        this.updateInterval = setInterval(this.getData, 5000)
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.updateInterval)
     }
 
     getData = () => {
@@ -27,7 +32,7 @@ class Marketdata extends React.Component{
                         labels: coinName,
                         datasets:[
                             {
-                                label:'Population',
+                                label:'Percentage',
                                 data:coinPercentage,
                                 backgroundColor:[
                                     'rgba(153, 102, 255, 0.6)'
@@ -72,9 +77,15 @@ class Marketdata extends React.Component{
                     </ul>
                 </div>
                 <div className="col-sm-7">
-                    <p>Price change %</p>
                     <Line
                         data={this.state.chartData}
+                        options={{
+                            title:{
+                                display:'Test',
+                                text:'Price change %',
+                                fontSize:25
+                            }
+                        }}
                     />
                 </div>
             </div>
