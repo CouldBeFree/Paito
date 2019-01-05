@@ -2,7 +2,7 @@ import React from 'react';
 import preloader from '../../preloader.gif';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getCoins } from '../../actions/getCoins';
+import { getCoins, updateCoins } from '../../actions/getCoins';
 import { selectedCoin } from '../../actions/selectedCoin';
 
 class Modal extends React.Component{
@@ -16,7 +16,6 @@ class Modal extends React.Component{
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.coinsList.coins);
         const list = nextProps.coinsList.coins;
         this.setState({
             items: list
@@ -41,22 +40,19 @@ class Modal extends React.Component{
             });
         this.setState({
             items: newArr
-        })
+        });
+        this.props.updateCoins(newArr)
     };
 
     filterCoins = (e) => {
         const {coinsList} = this.props;
-        const list = coinsList.coins;
-        let newCoins =[];
-        for (let key in list){
-            newCoins.push(list[key].CoinInfo.Name)
-        }
-        newCoins = newCoins.filter(function(item){
+        let list = coinsList.coins;
+        list = list.filter(function(item){
             return item.toLowerCase().search(
                 e.target.value.toLowerCase()) !== -1;
         });
         this.setState({
-            items: newCoins
+            items: list
         })
     };
 
@@ -91,4 +87,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {getCoins, selectedCoin})(Modal);
+export default connect(mapStateToProps, {getCoins, selectedCoin, updateCoins})(Modal);

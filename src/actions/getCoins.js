@@ -34,3 +34,11 @@ export const getCoins = () => {
             })
     }
 };
+
+// Update coins
+export const updateCoins = (val) => {
+    return{
+        type: GET_COINS,
+        payload: val
+    }
+};
