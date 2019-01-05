@@ -16,20 +16,19 @@ class Modal extends React.Component{
     }
 
     componentWillReceiveProps(nextProps) {
-        const list = nextProps.coinsList.coins;
+        /*const list = nextProps.coinsList.coins;
         let newCoins =[];
         for (let key in list){
             newCoins.push(list[key].CoinInfo.Name)
         }
         this.setState({
             items: newCoins
-        });
+        });*/
     }
 
     selectCoin = (e) => {
         const {items} = this.state;
         let newArr = items.filter(item => item !== e);
-        console.log(e);
         axios.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${e}&tsym=USD`)
             .then(res => {
                 const coin = {
@@ -74,13 +73,13 @@ class Modal extends React.Component{
                             <div className="d-flex justify-content-between">
                                 <input onChange={this.filterCoins} type="text"/>
                             </div>
-                            <ul className="coin-list">
+                            {/*<ul className="coin-list">
                                 {
                                     this.state.items.map((item, index) => {
                                         return <li onClick={e => this.selectCoin(item)} key={index}>{item}</li>
                                     })
                                 }
-                            </ul>
+                            </ul>*/}
                         </div>
                 }
             </div>

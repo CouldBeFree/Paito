@@ -12,11 +12,6 @@ class Marketdata extends React.Component{
 
     componentDidMount(){
         this.getData();
-        this.updateInterval = setInterval(this.getData, 5000)
-    }
-
-    componentWillUnmount(){
-        clearInterval(this.updateInterval)
     }
 
     getData = () => {

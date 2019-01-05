@@ -1,7 +1,7 @@
 import { GET_COINS } from '../actions/types';
 
 const initialState = {
-    coins: {}
+    coins: []
 };
 
 export default function (state = initialState, action) {
