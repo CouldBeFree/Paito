@@ -16,14 +16,11 @@ class Modal extends React.Component{
     }
 
     componentWillReceiveProps(nextProps) {
-        /*const list = nextProps.coinsList.coins;
-        let newCoins =[];
-        for (let key in list){
-            newCoins.push(list[key].CoinInfo.Name)
-        }
+        console.log(nextProps.coinsList.coins);
+        const list = nextProps.coinsList.coins;
         this.setState({
-            items: newCoins
-        });*/
+            items: list
+        });
     }
 
     selectCoin = (e) => {
@@ -73,13 +70,13 @@ class Modal extends React.Component{
                             <div className="d-flex justify-content-between">
                                 <input onChange={this.filterCoins} type="text"/>
                             </div>
-                            {/*<ul className="coin-list">
+                            <ul className="coin-list">
                                 {
                                     this.state.items.map((item, index) => {
                                         return <li onClick={e => this.selectCoin(item)} key={index}>{item}</li>
                                     })
                                 }
-                            </ul>*/}
+                            </ul>
                         </div>
                 }
             </div>

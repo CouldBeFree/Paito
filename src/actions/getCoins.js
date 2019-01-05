@@ -21,7 +21,6 @@ export const getCoins = () => {
         dispatch(loading(true));
         axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=100&tsym=USD')
             .then(res => {
-                console.log(res.data.Data);
                 const list = res.data.Data;
                 let newCoins =[];
                 for (let key in list){
