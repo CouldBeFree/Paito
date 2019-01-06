@@ -14,7 +14,19 @@ class Card extends React.Component{
                 this.setState({
                     coinData: this.state.coinData.concat(item.coinInfo)
                 })
-            })
+            });
+    }
+
+    componentDidMount(){
+        const { selectedCoins } = this.props;
+        if(!isEmptyObj(selectedCoins.selectedCoins)){
+            selectedCoins.selectedCoins
+                .map(item => {
+                    this.setState({
+                        coinData: this.state.coinData.concat(item.coinInfo)
+                    })
+                })
+        }
     }
 
     render(){
@@ -26,7 +38,7 @@ class Card extends React.Component{
                         isEmptyObj(coinData) ? 'Select your first coin' :
                             Object.values(coinData)
                                 .map(item => {
-                                    return <li key={item.CoinInfo.Id} className="col-sm-3">
+                                    return <li key={item.CoinInfo.Id} className="col-12 col-sm-6 col-md-3">
                                         <div className="content-wrap d-flex justify-content-between align-items-center">
                                             <div className="info">
                                                 <p>{item.CoinInfo.FullName}</p>

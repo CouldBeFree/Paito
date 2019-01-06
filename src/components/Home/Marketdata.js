@@ -46,7 +46,7 @@ class Marketdata extends React.Component{
         const { loadedData, loading } = this.state;
         return(
             <div className="row">
-                <div className="data-wrapper col-sm-5">
+                <div className="data-wrapper col-md-12 col-lg-5">
                     <ul className="data-list">
                         <li>
                             <div className="head d-flex justify-content-between">
@@ -71,7 +71,7 @@ class Marketdata extends React.Component{
                         }
                     </ul>
                 </div>
-                <div className="col-sm-7">
+                <div className="col-md-12 col-lg-7">
                     <Line
                         data={this.state.chartData}
                         options={{
