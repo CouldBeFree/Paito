@@ -20,14 +20,13 @@ class Card extends React.Component{
     componentDidMount(){
         const { selectedCoins } = this.props;
         console.log(selectedCoins.selectedCoins);
-        let test = [];
+        let selectedItems = [];
         if(!isEmptyObj(selectedCoins.selectedCoins)){
             selectedCoins.selectedCoins
                 .map(item => {
-                    test.push(item.coinInfo);
-                    console.log(test);
+                    selectedItems.push(item.coinInfo);
                     this.setState({
-                        coinData: test
+                        coinData: selectedItems
                     });
                 })
         }
