@@ -6,7 +6,8 @@ import axios from "axios/index";
 class MarketCap extends React.Component {
     state = {
         currentPage: 0,
-        data: null
+        data: [],
+        loading: false
     };
 
     dataSet = [...Array(Math.ceil(500 + Math.random() * 500))].map(
@@ -18,11 +19,15 @@ class MarketCap extends React.Component {
 
     componentDidMount(){
         const {data} = this.state;
+        this.setState({
+            loading: true
+        });
         axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&page=1&tsym=USD')
             .then(res => {
                 this.setState({
-                    data: res.data.Data
-                })
+                    data: res.data.Data,
+                    loading: false
+                });
             })
     }
 
@@ -40,11 +45,23 @@ class MarketCap extends React.Component {
     }
 
     render(){
-        const { currentPage } = this.state;
+        const { currentPage, data, loading } = this.state;
 
         return(
             <div>
                 <h1>Marketcap</h1>
+                {
+                    loading ? 'Loading' :
+                        <ul>
+                            {
+                                data.map(item => {
+                                    return <li>
+                                        {item.CoinInfo.Id}
+                                    </li>
+                                })
+                            }
+                        </ul>
+                }
                 <div className="pagination-wrapper">
                     <Pagination aria-label="Page navigation example">
                         <PaginationItem disabled={currentPage <= 0}>

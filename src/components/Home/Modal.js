@@ -8,7 +8,8 @@ import { selectedCoin } from '../../actions/selectedCoin';
 class Modal extends React.Component{
     state = {
         items: [],
-        innerLoading: false
+        innerLoading: false,
+        loading: false
     };
 
     componentDidMount(){
