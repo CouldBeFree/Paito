@@ -50,17 +50,35 @@ class MarketCap extends React.Component {
         return(
             <div>
                 <h1>Marketcap</h1>
+                <ul className="header d-flex justify-content-between">
+                    <li>Name</li>
+                    <li>Marketcap</li>
+                    <li>Price</li>
+                    <li>Volume</li>
+                    <li>Change %</li>
+                    <li>Volume hour to</li>
+                </ul>
                 {
                     loading ? 'Loading' :
-                        <ul>
+                        <ol className="list">
                             {
                                 data.map(item => {
-                                    return <li>
-                                        {item.CoinInfo.Id}
+                                    return <li key={item.CoinInfo.Id}>
+                                        <div className="inner-wrapper d-flex justify-content-between">
+                                            <div className="coin-image">
+                                                <img src={`https://www.cryptocompare.com/${item.CoinInfo.ImageUrl}`} alt="image"/>
+                                            </div>
+                                            <span>{item.CoinInfo.FullName}</span>
+                                            <span>{item.DISPLAY.USD.MKTCAP}</span>
+                                            <span>{item.RAW.USD.PRICE.toFixed(2)}$</span>
+                                            <span>{item.DISPLAY.USD.VOLUMEDAYTO}</span>
+                                            <span>{item.DISPLAY.USD.CHANGEPCT24HOUR}%</span>
+                                            <span>{item.DISPLAY.USD.VOLUMEHOURTO}</span>
+                                        </div>
                                     </li>
                                 })
                             }
-                        </ul>
+                        </ol>
                 }
                 <div className="pagination-wrapper">
                     <Pagination aria-label="Page navigation example">

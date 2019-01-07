@@ -1,0 +1,34 @@
+.header{
+  padding-left: 20px;
+  list-style-type: none;
+  font-weight: bold;
+
+  li{
+    flex-basis: 16.67%;
+  }
+}
+
+.list{
+  padding-left: 20px;
+
+  li{
+    margin: 10px 0;
+    padding: 10px;
+    background: #FFFFFF;
+  }
+
+  .inner-wrapper{
+    span{
+      flex-basis: 16.67%;
+    }
+  }
+}
+
+.coin-image{
+  width: 15px;
+
+  img{
+    width: 100%;
+    height: auto;
+  }
+}
