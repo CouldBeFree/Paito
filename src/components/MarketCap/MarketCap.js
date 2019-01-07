@@ -65,7 +65,7 @@ class MarketCap extends React.Component {
                                 data.map(item => {
                                     return <li key={item.CoinInfo.Id}>
                                         <div className="inner-wrapper d-flex justify-content-between">
-                                            <div className="coin-image">
+                                            <div className="coin-image d-flex align-items-center">
                                                 <img src={`https://www.cryptocompare.com/${item.CoinInfo.ImageUrl}`} alt="image"/>
                                             </div>
                                             <span>{item.CoinInfo.FullName}</span>
