@@ -5,69 +5,58 @@ import axios from "axios/index";
 
 class MarketCap extends React.Component {
     state = {
-        currentPage: 1
+        currentPage: 0
     };
 
-    setPage = (page) => {
-        /*axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&page=1&tsym=USD')
-            .then(res => {
-                console.log(res.data)
-            })*/
-        console.log(page);
+    dataSet = [...Array(Math.ceil(500 + Math.random() * 500))].map(
+        (a, i) => "Record " + (i + 1)
+    );
+
+    pageSize = 50;
+    pagesCount = Math.ceil(this.dataSet.length / this.pageSize);
+
+    handleClick(e, index) {
+        e.preventDefault();
         this.setState({
-            currentPage: page
-        })
-    };
-
-    prevHandler = () => {
-        this.setState(prevState => {
-            return {currentPage: prevState.currentPage - 1}
-        })
-    };
-
-    nextHandler = () => {
-        this.setState(prevState => {
-            return {currentPage: prevState.currentPage + 1}
-        })
-    };
+            currentPage: index
+        });
+        console.log(index);
+        axios.get(`https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&page=${index + 1}&tsym=USD`)
+            .then(res => {
+                console.log(res.data.Data)
+            })
+    }
 
     render(){
+        const { currentPage } = this.state;
+
         return(
             <div>
-                <h1>Marketcap</h1>
-                <Pagination aria-label="Page navigation example">
-                    <PaginationItem>
-                        <PaginationLink previous onClick={this.prevHandler} />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink onClick={()=> this.setPage(1)}>
-                            1
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink onClick={()=> this.setPage(2)}>
-                            2
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink onClick={()=> this.setPage(3)}>
-                            3
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink onClick={()=> this.setPage(4)}>
-                            4
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink onClick={()=> this.setPage(5)}>
-                            5
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink next onClick={this.nextHandler} />
-                    </PaginationItem>
-                </Pagination>
+                <div className="pagination-wrapper">
+                    <Pagination aria-label="Page navigation example">
+                        <PaginationItem disabled={currentPage <= 0}>
+                            <PaginationLink
+                                onClick={e => this.handleClick(e, currentPage - 1)}
+                                previous
+                                href="#"
+                            />
+                        </PaginationItem>
+                        {[...Array(this.pagesCount)].map((page, i) =>
+                            <PaginationItem active={i === currentPage} key={i}>
+                                <PaginationLink onClick={e => this.handleClick(e, i)} href="#">
+                                    {i + 1}
+                                </PaginationLink>
+                            </PaginationItem>
+                        )}
+                        <PaginationItem disabled={currentPage >= this.pagesCount - 1}>
+                            <PaginationLink
+                                onClick={e => this.handleClick(e, currentPage + 1)}
+                                next
+                                href="#"
+                            />
+                        </PaginationItem>
+                    </Pagination>
+                </div>
             </div>
         )
     }
