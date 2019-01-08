@@ -19,7 +19,6 @@ class Card extends React.Component{
 
     componentDidMount(){
         const { selectedCoins } = this.props;
-        console.log(selectedCoins.selectedCoins);
         let selectedItems = [];
         if(!isEmptyObj(selectedCoins.selectedCoins)){
             selectedCoins.selectedCoins
