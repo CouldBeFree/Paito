@@ -53,7 +53,108 @@ class Ico extends React.Component {
                         'rgba(58, 67, 82, 1)'
                     ]
                 }
-            ]}
+            ]},
+        transactions: [
+            {
+                status: 'Paid',
+                date: '13-02-2018',
+                amount: 'Deposit',
+                value: '5,341',
+                currency: 'ETH',
+                token: '3,201',
+                details: 'Deposit to your balance'
+            },
+            {
+                status: 'In Process',
+                date: '13-02-2018',
+                amount: 'Referral',
+                value: '5,341',
+                currency: 'BTC',
+                token: '3,201',
+                details: 'Deposit to your balance'
+            },
+            {
+                status: 'Paid',
+                date: '13-02-2018',
+                amount: 'Deposit',
+                value: '5,341',
+                currency: 'XPR',
+                token: '3,201',
+                details: 'Deposit to your balance'
+            },
+            {
+                status: 'Pending',
+                date: '13-02-2018',
+                amount: 'Withdraw',
+                value: '5,341',
+                currency: 'NEO',
+                token: '3,201',
+                details: 'Deposit to your balance'
+            },
+            {
+                status: 'In Process',
+                date: '13-02-2018',
+                amount: 'Referral',
+                value: '5,341',
+                currency: 'XMR',
+                token: '3,201',
+                details: 'Deposit to your balance'
+            },
+            {
+                status: 'Paid',
+                date: '13-02-2018',
+                amount: 'Deposit',
+                value: '5,341',
+                currency: 'BTC',
+                token: '3,201',
+                details: 'Deposit to your balance'
+            },
+            {
+                status: 'Pending',
+                date: '13-02-2018',
+                amount: 'Referral',
+                value: '5,341',
+                currency: 'LTC',
+                token: '3,201',
+                details: 'Deposit to your balance'
+            },
+            {
+                status: 'In Process',
+                date: '13-02-2018',
+                amount: 'Deposit',
+                value: '5,341',
+                currency: 'XPR',
+                token: '3,201',
+                details: 'Deposit to your balance'
+            },
+            {
+                status: 'Paid',
+                date: '13-02-2018',
+                amount: 'Withdraw',
+                value: '5,341',
+                currency: 'LTC',
+                token: '3,201',
+                details: 'Deposit to your balance'
+            },
+            {
+                status: 'Paid',
+                date: '13-02-2018',
+                amount: 'Withdraw',
+                value: '5,341',
+                currency: 'XPR',
+                token: '3,201',
+                details: 'Deposit to your balance'
+            },
+            {
+                status: 'Pending',
+                date: '13-02-2018',
+                amount: 'Deposit',
+                value: '5,341',
+                currency: 'NEO',
+                token: '3,201',
+                details: 'Deposit to your balance'
+            }
+        ]
     };
 
     render(){
