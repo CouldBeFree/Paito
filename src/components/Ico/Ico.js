@@ -56,6 +56,7 @@ class Ico extends React.Component {
             ]},
         transactions: [
             {
+                id: 1,
                 status: 'Paid',
                 date: '13-02-2018',
                 amount: 'Deposit',
@@ -65,6 +66,7 @@ class Ico extends React.Component {
                 details: 'Deposit to your balance'
             },
             {
+                id: 2,
                 status: 'In Process',
                 date: '13-02-2018',
                 amount: 'Referral',
@@ -74,6 +76,7 @@ class Ico extends React.Component {
                 details: 'Deposit to your balance'
             },
             {
+                id: 3,
                 status: 'Paid',
                 date: '13-02-2018',
                 amount: 'Deposit',
@@ -83,6 +86,7 @@ class Ico extends React.Component {
                 details: 'Deposit to your balance'
             },
             {
+                id: 4,
                 status: 'Pending',
                 date: '13-02-2018',
                 amount: 'Withdraw',
@@ -92,6 +96,7 @@ class Ico extends React.Component {
                 details: 'Deposit to your balance'
             },
             {
+                id: 5,
                 status: 'In Process',
                 date: '13-02-2018',
                 amount: 'Referral',
@@ -101,6 +106,7 @@ class Ico extends React.Component {
                 details: 'Deposit to your balance'
             },
             {
+                id: 6,
                 status: 'Paid',
                 date: '13-02-2018',
                 amount: 'Deposit',
@@ -110,6 +116,7 @@ class Ico extends React.Component {
                 details: 'Deposit to your balance'
             },
             {
+                id: 7,
                 status: 'Pending',
                 date: '13-02-2018',
                 amount: 'Referral',
@@ -119,6 +126,7 @@ class Ico extends React.Component {
                 details: 'Deposit to your balance'
             },
             {
+                id: 8,
                 status: 'In Process',
                 date: '13-02-2018',
                 amount: 'Deposit',
@@ -128,6 +136,7 @@ class Ico extends React.Component {
                 details: 'Deposit to your balance'
             },
             {
+                id: 9,
                 status: 'Paid',
                 date: '13-02-2018',
                 amount: 'Withdraw',
@@ -137,6 +146,7 @@ class Ico extends React.Component {
                 details: 'Deposit to your balance'
             },
             {
+                id: 10,
                 status: 'Paid',
                 date: '13-02-2018',
                 amount: 'Withdraw',
@@ -146,6 +156,7 @@ class Ico extends React.Component {
                 details: 'Deposit to your balance'
             },
             {
+                id: 11,
                 status: 'Pending',
                 date: '13-02-2018',
                 amount: 'Deposit',
@@ -158,6 +169,7 @@ class Ico extends React.Component {
     };
 
     render(){
+        const {transactions} = this.state;
         return(
             <div>
                 <h1>Ico Dashboard</h1>
@@ -171,6 +183,32 @@ class Ico extends React.Component {
                         <div className="chart-wrap d-flex align-items-center">
                             <Pie data={this.state.pieData}/>
                         </div>
+                    </div>
+                    <div className="col-sm-12">
+                        <ul className="transactions-holder">
+                            <li className="head d-flex justify-content-between">
+                                <span>Status</span>
+                                <span>Data</span>
+                                <span>Amount</span>
+                                <span>Value</span>
+                                <span>Currency</span>
+                                <span>Token</span>
+                                <span>Details</span>
+                            </li>
+                            {
+                                transactions.map(item => {
+                                    return <li key={item.id} className="d-flex justify-content-between">
+                                        <span className="status">{item.status}</span>
+                                        <span>{item.date}</span>
+                                        <span className="amount">{item.amount}</span>
+                                        <span className="status">{item.value}</span>
+                                        <span>{item.currency}</span>
+                                        <span className="status">{item.token}</span>
+                                        <span className="amount">{item.details}</span>
+                                    </li>
+                                })
+                            }
+                        </ul>
                     </div>
                 </div>
             </div>

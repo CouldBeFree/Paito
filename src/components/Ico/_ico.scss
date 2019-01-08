@@ -1,0 +1,27 @@
+.transactions-holder{
+  list-style-type: none;
+  padding: 0;
+  background: #ffffff;
+  margin-top: 30px;
+
+  li{
+    padding: 10px;
+    border-bottom: 1px solid #E5E5E5;
+  }
+
+  span{
+    flex-basis: 14%;
+  }
+
+  .status{
+    color: #09B3EE;
+  }
+
+  .amount{
+    color: #1F9178;
+  }
+}
+
+.head{
+  font-weight: bold;
+}

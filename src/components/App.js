@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import {Router, Route, Switch} from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import Home from './Home/Home';
-import Dashboard from './Dashboard/Dashboard';
-import Trading from './Trading/Exchange';
 import MarketCap from './MarketCap/MarketCap';
 import Ico from './Ico/Ico';
 import BuyAndSell from './Buy/Buy';
 import Wallet from './My wallet/Wallet';
-import Exchange from './Trading/Exchange';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 import Sidebar from './Sidebar/Sibebar';
@@ -69,12 +66,6 @@ class App extends Component {
                                         <PrivateRoute exact path="/" component={Home} />
                                     </Switch>
                                     <Switch>
-                                        <PrivateRoute path="/dashboard" component={Dashboard} />
-                                    </Switch>
-                                    <Switch>
-                                        <PrivateRoute path="/trading" component={Trading} />
-                                    </Switch>
-                                    <Switch>
                                         <PrivateRoute path="/marketcap" component={MarketCap}/>
                                     </Switch>
                                     <Switch>
@@ -85,9 +76,6 @@ class App extends Component {
                                     </Switch>
                                     <Switch>
                                         <PrivateRoute path="/wallet" component={Wallet}/>
-                                    </Switch>
-                                    <Switch>
-                                        <PrivateRoute path="/exchange" component={Exchange}/>
                                     </Switch>
                                 </Col>
                             </Row>

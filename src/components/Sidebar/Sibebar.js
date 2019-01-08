@@ -19,12 +19,6 @@ class Sibebar extends React.Component{
                     <NavLink exact to="/">Home</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink to="/dashboard">Dashboard</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/trading">Trading</NavLink>
-                </li>
-                <li className="nav-item">
                     <NavLink to="/marketcap">MarketCap</NavLink>
                 </li>
                 <li className="nav-item">
@@ -35,9 +29,6 @@ class Sibebar extends React.Component{
                 </li>
                 <li className="nav-item">
                     <NavLink to="/wallet">My Wallet</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/exchange">Currency Exchange</NavLink>
                 </li>
                 <li className="nav-item">
                     <Button onClick={this.onLogoutUser}>Logout</Button>
