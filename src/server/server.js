@@ -85,13 +85,23 @@ io.on('connection', (socket) => {
     })
 });*/
 
-io.on('connection', (client) => {
-    client.on('subscribeToTimer', (interval) => {
+io.on('connection', (socket) => {
+    socket.on('subscribeToTimer', (interval) => {
         console.log('client is subscribing to timer with interval ', interval);
         setInterval(() => {
-            client.emit('timer', new Date());
+            socket.emit('timer', new Date());
         }, interval);
     });
+
+    console.log('A user connected');
+
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
+
+    socket.on('chat message', (msg) => {
+        console.log('message:' + msg)
+    })
 });
 
 const socketPort = 8000;

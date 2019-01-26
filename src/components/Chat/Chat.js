@@ -1,23 +1,30 @@
 import React from 'react';
-import subscribeToTimer from '../../utils/subscribeToTimer';
+import { message } from '../../utils/chat';
 
 class Chat extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            timestamp: 'no timestamp yet'
-        };
-        subscribeToTimer((err, timestamp) => this.setState({
-            timestamp
-        }));
-    }
+    state = {
+        text: ''
+    };
+
+    submitMessage = (e) => {
+        e.preventDefault();
+        message(this.state.text);
+    };
+
+    setMessage = (e) => {
+        this.setState({
+            text: e.target.value
+        })
+    };
 
     render(){
-        const { timestamp } = this.state;
         return(
             <div>
                 <h1>I am chat component</h1>
-                <h2>{timestamp}</h2>
+                <form onSubmit={this.submitMessage}>
+                    <input type="text" onChange={this.setMessage}/>
+                    <input type="submit"/>
+                </form>
             </div>
         )
     }
