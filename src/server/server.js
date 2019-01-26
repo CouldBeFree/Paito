@@ -69,3 +69,10 @@ app.listen(port, () => console.log(`Server running on port ${port}`));
 // Sockets
 const server = http.Server(app);
 const io = require('socket.io')(server);
+
+server.listen(80);
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '../components/Chat/Chat.js')
+});
+

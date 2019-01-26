@@ -31,6 +31,9 @@ class Sibebar extends React.Component{
                     <NavLink to="/wallet">My Wallet</NavLink>
                 </li>
                 <li className="nav-item">
+                    <NavLink to="/chat">Chat</NavLink>
+                </li>
+                <li className="nav-item">
                     <Button onClick={this.onLogoutUser}>Logout</Button>
                 </li>
             </ul>

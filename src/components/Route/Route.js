@@ -30,6 +30,9 @@ class Navigation extends React.Component {
                 <li className="nav-item">
                     <Link className="nav-anchor" to="/exchange">Currency Exchange</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-anchor" to="/chat">Chat</Link>
+                </li>
             </ul>
         )
     }

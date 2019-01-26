@@ -9,6 +9,7 @@ import Wallet from './My wallet/Wallet';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 import Sidebar from './Sidebar/Sibebar';
+import Chat from './Chat/Chat';
 import {Provider} from 'react-redux';
 import store from '../store';
 import setAuthToken from '../utils/setAuthToken';
@@ -76,6 +77,9 @@ class App extends Component {
                                     </Switch>
                                     <Switch>
                                         <PrivateRoute path="/wallet" component={Wallet}/>
+                                    </Switch>
+                                    <Switch>
+                                        <PrivateRoute path="/Chat" component={Chat}/>
                                     </Switch>
                                 </Col>
                             </Row>
