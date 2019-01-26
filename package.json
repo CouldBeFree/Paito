@@ -27,7 +27,8 @@
     "reactstrap": "^6.5.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "save": "^2.3.3"
+    "save": "^2.3.3",
+    "socket.io": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

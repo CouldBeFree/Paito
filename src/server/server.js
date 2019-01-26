@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const cors = require('cors');
+const http = require('http');
 
 const app = express();
 app.use(cors());
@@ -64,3 +65,7 @@ app.use('/api/profile', profile);
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+// Sockets
+const server = http.Server(app);
+const io = require('socket.io')(server);
