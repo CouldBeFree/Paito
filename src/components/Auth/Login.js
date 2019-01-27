@@ -74,7 +74,7 @@ class Login extends React.Component {
             <div className="main-wrapper form-wrap">
                 <h4>Login Now</h4>
                 <Row>
-                    <Col xs="5">
+                    <Col sm="12" md="6">
                         <div className="form-holder">
                             <h6 className='form-headline'>Login Now</h6>
                             <Form onSubmit={this.handleSubmit}>
@@ -95,7 +95,7 @@ class Login extends React.Component {
                             )}
                         </div>
                     </Col>
-                    <Col xs="7">
+                    <Col sm="12" md="6">
                         <h1>Buy and sell coins at the cryptopic without additional fees</h1>
                         <p>Proin non tortor phaetra nisi ulticres rhonus. Quisique posuere ut mi et viverra. Nunc lorem
                             odio, aliquam vei ipsum vei, posuere augue. Sed convillis dul ut erat consequat. In sodales saplen ornare</p>
