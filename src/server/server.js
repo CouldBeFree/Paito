@@ -93,15 +93,16 @@ io.on('connection', (socket) => {
         }, interval);
     });
 
-    console.log('A user connected');
+    console.log('New user connected');
 
     socket.on('disconnect', function(){
         console.log('user disconnected');
     });
 
     socket.on('chat message', (msg) => {
-        console.log('message:' + msg)
-    })
+        console.log('message:' + msg);
+        io.emit('chat message', msg);
+    });
 });
 
 const socketPort = 8000;

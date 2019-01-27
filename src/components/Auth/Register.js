@@ -30,19 +30,19 @@ class Register extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        if(this.isFormValid()){
-            console.log('True');
-            return true
-        } else{
-            return false
-        }
+
         const user = {
             name: this.state.userName,
             email: this.state.email,
             password: this.state.password
         };
 
-        this.props.registerUser(user, this.props.history);
+        if(this.isFormValid()){
+            this.props.registerUser(user, this.props.history);
+            return true
+        } else{
+            return false
+        }
     };
 
     displayErrors = errors => errors.map((err, i) => <p key={i}>{err.message} {err.email}</p>);
@@ -78,8 +78,8 @@ class Register extends React.Component {
         }
     };
 
-    isFormEmpty = ({ userName, password, confirmPassword, email, checked }) => {
-          return !userName.length || !email.length || !confirmPassword.length || !password.length || !checked
+    isFormEmpty = ({ userName, password, confirmPassword, email }) => {
+          return !userName.length || !email.length || !confirmPassword.length || !password.length
     };
 
     render(){
@@ -89,7 +89,7 @@ class Register extends React.Component {
             <div className="main-wrapper form-wrap">
                 <h4>Register Now</h4>
                 <Row>
-                    <Col xs="5">
+                    <Col sm="12" md="6">
                         <div className="form-holder">
                             <h6 className='form-headline'>Register Now</h6>
                             <Form onSubmit={this.handleSubmit}>
@@ -116,7 +116,7 @@ class Register extends React.Component {
                             )}
                         </div>
                     </Col>
-                    <Col xs="7">
+                    <Col sm="12" md="6">
                         <h1>Buy and sell coins at the cryptopic without additional fees</h1>
                         <p>Proin non tortor phaetra nisi ulticres rhonus. Quisique posuere ut mi et viverra. Nunc lorem
                             odio, aliquam vei ipsum vei, posuere augue. Sed convillis dul ut erat consequat. In sodales saplen ornare</p>
