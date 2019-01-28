@@ -3,12 +3,26 @@ import { message } from '../../utils/chat';
 import openSocket from 'socket.io-client';
 
 class Chat extends React.Component{
-    state = {
-        text: '',
-        messages: ''
-    };
+    constructor(props){
+        super(props);
 
-    socket = openSocket('http://localhost:8000');
+        this.state = {
+            text: '',
+            messages: ''
+        };
+
+        this.socket = openSocket('http://localhost:8000');
+
+        this.socket.on('recieve', (msg) => {
+            addMessage(msg);
+        });
+
+        const addMessage = data => {
+            console.log(data);
+            this.setState({messages: [...this.state.messages, data]});
+            console.log(this.state.messages);
+        };
+    }
 
     submitMessage = (e) => {
         e.preventDefault();
@@ -25,12 +39,7 @@ class Chat extends React.Component{
     };
 
     render(){
-        this.socket.on('chat message', (msg) => {
-            this.setState({
-                messages: msg
-            })
-        });
-
+        const { messages } = this.state;
         return(
             <div>
                 <h1>I am chat component</h1>
@@ -38,7 +47,13 @@ class Chat extends React.Component{
                     <input type="text" value={this.state.text} onChange={this.setMessage}/>
                     <input type="submit"/>
                 </form>
-                Message: {this.state.messages}
+                Message: {messages.length ? messages.map(item => {
+                    return(
+                        <div>
+                            <div key={messages.length}>{item}</div>
+                        </div>
+                    )
+            }) : null}
             </div>
         )
     }
