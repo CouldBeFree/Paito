@@ -19,7 +19,17 @@ class Chat extends React.Component{
 
         const addMessage = data => {
             console.log(data);
-            this.setState({messages: [...this.state.messages, data]});
+            const guidGenerator = () => {
+                const S4 = function() {
+                    return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+                };
+                return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+            };
+            const messageObj = {
+                id: guidGenerator(),
+                message: data
+            };
+            this.setState({messages: [...this.state.messages, messageObj]});
             console.log(this.state.messages);
         };
     }
@@ -49,8 +59,8 @@ class Chat extends React.Component{
                 </form>
                 Message: {messages.length ? messages.map(item => {
                     return(
-                        <div>
-                            <div key={messages.length}>{item}</div>
+                        <div key={item.id}>
+                            <div>{item.message}</div>
                         </div>
                     )
             }) : null}
