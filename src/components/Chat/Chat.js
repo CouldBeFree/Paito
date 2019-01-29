@@ -9,16 +9,53 @@ class Chat extends React.Component{
 
         this.state = {
             text: '',
-            messages: ''
+            messages: '',
+            activeUser: '',
+            isOpen: false,
+            isTyping: false,
+            typingUser: ''
         };
-
-        console.log(props.user.user.name);
 
         this.socket = openSocket('http://localhost:8000');
 
         this.socket.on('recieve', (msg) => {
             addMessage(msg);
         });
+
+        this.socket.on('user typing', (user) => {
+            this.setState({
+                isTyping: true,
+                typingUser: user
+            })
+        });
+
+        this.socket.on('connected user', user => {
+            this.setState({
+                activeUser: user
+            });
+            showUser();
+            setTimeout(() => {
+                hideUser()
+            }, 5000);
+        });
+
+        this.socket.on('stop typing', () => {
+            this.setState({
+                isTyping: false
+            })
+        });
+
+        const showUser = () => {
+            this.setState({
+                isOpen: true
+            })
+        };
+
+        const hideUser = () => {
+            this.setState({
+                isOpen: false
+            })
+        };
 
         this.socket.emit('new user', props.user.user.name);
 
@@ -42,21 +79,25 @@ class Chat extends React.Component{
     submitMessage = (e) => {
         e.preventDefault();
         message(this.state.text);
+        this.socket.emit('end typing');
         this.setState({
             text: ''
         })
     };
 
     setMessage = (e) => {
+        this.socket.emit('typing', this.props.user.user.name);
         this.setState({
             text: e.target.value
         })
     };
 
     render(){
-        const { messages } = this.state;
+        const { messages, isOpen, activeUser, isTyping, typingUser } = this.state;
         return(
             <div>
+                { isOpen ? <div>{activeUser} is active</div> : null }
+                { isTyping ? `${typingUser} is typing now` : null }
                 <h1>I am chat component</h1>
                 <form onSubmit={this.submitMessage}>
                     <input type="text" value={this.state.text} onChange={this.setMessage}/>

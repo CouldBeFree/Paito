@@ -100,7 +100,17 @@ io.on('connection', (socket) => {
     });
 
     socket.on('new user', (user) => {
-        console.log(`${user} is active now`)
+        console.log(`${user} is active now`);
+        socket.broadcast.emit('connected user', user)
+    });
+
+    socket.on('typing', (user) => {
+        console.log(`${user} is typing`);
+        socket.broadcast.emit('user typing', user)
+    });
+
+    socket.on('end typing', () => {
+        socket.broadcast.emit('stop typing')
     })
 });
 
