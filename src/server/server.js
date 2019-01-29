@@ -95,14 +95,13 @@ io.on('connection', (socket) => {
 
     console.log('New user connected');
 
-    socket.on('disconnect', function(){
-        console.log('user disconnected');
-    });
-
     socket.on('chat message', (msg) => {
-        console.log('message:' + msg);
         io.emit('recieve', msg);
     });
+
+    socket.on('new user', (user) => {
+        console.log(`${user} is active now`)
+    })
 });
 
 const socketPort = 8000;

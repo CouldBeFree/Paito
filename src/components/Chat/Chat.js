@@ -1,6 +1,7 @@
 import React from 'react';
 import { message } from '../../utils/chat';
 import openSocket from 'socket.io-client';
+import {connect} from 'react-redux';
 
 class Chat extends React.Component{
     constructor(props){
@@ -11,11 +12,15 @@ class Chat extends React.Component{
             messages: ''
         };
 
+        console.log(props.user.user.name);
+
         this.socket = openSocket('http://localhost:8000');
 
         this.socket.on('recieve', (msg) => {
             addMessage(msg);
         });
+
+        this.socket.emit('new user', props.user.user.name);
 
         const addMessage = data => {
             console.log(data);
@@ -58,15 +63,21 @@ class Chat extends React.Component{
                     <input type="submit"/>
                 </form>
                 Message: {messages.length ? messages.map(item => {
-                    return(
-                        <div key={item.id}>
-                            <div>{item.message}</div>
-                        </div>
-                    )
+                return(
+                    <div key={item.id}>
+                        <div>{item.message}</div>
+                    </div>
+                )
             }) : null}
             </div>
         )
     }
 }
 
-export default Chat;
+const mapStateToProps = state => {
+    return{
+        user: state.auth
+    }
+};
+
+export default connect(mapStateToProps)(Chat);
