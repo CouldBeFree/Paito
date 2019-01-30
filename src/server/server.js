@@ -68,35 +68,11 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
 // Sockets
-/*
-const server = http.Server(app);
-const io = require('socket.io')(server);
-
-server.listen(80);
-
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '../components/Chat/Chat.js')
-});
 
 io.on('connection', (socket) => {
-    socket.emit('news', {hello: 'world'});
-    socket.on('my other event', (data) => {
-        console.log(data);
-    })
-});*/
 
-io.on('connection', (socket) => {
-    socket.on('subscribeToTimer', (interval) => {
-        console.log('client is subscribing to timer with interval ', interval);
-        setInterval(() => {
-            socket.emit('timer', new Date());
-        }, interval);
-    });
-
-    console.log('New user connected');
-
-    socket.on('chat message', (msg) => {
-        io.emit('recieve', msg);
+    socket.on('chat message', (msg, user) => {
+        io.emit('recieve', msg, user);
     });
 
     socket.on('new user', (user) => {

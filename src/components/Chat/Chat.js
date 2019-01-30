@@ -18,8 +18,8 @@ class Chat extends React.Component{
 
         this.socket = openSocket('http://localhost:8000');
 
-        this.socket.on('recieve', (msg) => {
-            addMessage(msg);
+        this.socket.on('recieve', (msg, user) => {
+            addMessage(msg, user);
         });
 
         this.socket.on('user typing', (user) => {
@@ -59,8 +59,7 @@ class Chat extends React.Component{
 
         this.socket.emit('new user', props.user.user.name);
 
-        const addMessage = data => {
-            console.log(data);
+        const addMessage = (msg, user) => {
             const guidGenerator = () => {
                 const S4 = function() {
                     return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
@@ -69,16 +68,20 @@ class Chat extends React.Component{
             };
             const messageObj = {
                 id: guidGenerator(),
-                message: data
+                message: msg,
+                author: user
             };
             this.setState({messages: [...this.state.messages, messageObj]});
-            console.log(this.state.messages);
         };
+    }
+
+    componentWillUnmount(){
+        this.socket.close();
     }
 
     submitMessage = (e) => {
         e.preventDefault();
-        message(this.state.text);
+        message(this.state.text, this.props.user.user.name);
         this.socket.emit('end typing');
         this.setState({
             text: ''
@@ -106,7 +109,7 @@ class Chat extends React.Component{
                 Message: {messages.length ? messages.map(item => {
                 return(
                     <div key={item.id}>
-                        <div>{item.message}</div>
+                        <div>{`${item.author} ${item.message}`}</div>
                     </div>
                 )
             }) : null}
