@@ -2,6 +2,7 @@ import React from 'react';
 import { message } from '../../utils/chat';
 import openSocket from 'socket.io-client';
 import {connect} from 'react-redux';
+import '../App.scss';
 
 class Chat extends React.Component{
     constructor(props){
@@ -98,21 +99,30 @@ class Chat extends React.Component{
     render(){
         const { messages, isOpen, activeUser, isTyping, typingUser } = this.state;
         return(
-            <div>
-                { isOpen ? <div>{activeUser} is active</div> : null }
-                { isTyping ? `${typingUser} is typing now` : null }
-                <h1>I am chat component</h1>
-                <form onSubmit={this.submitMessage}>
-                    <input type="text" value={this.state.text} onChange={this.setMessage}/>
-                    <input type="submit"/>
-                </form>
-                Message: {messages.length ? messages.map(item => {
-                return(
-                    <div key={item.id}>
-                        <div>{`${item.author} ${item.message}`}</div>
+            <div className="main-window">
+                { isOpen ? <div className="notification-block">{activeUser} is active</div> : null }
+                <div className="block-holder">
+                    <ul className="chat-window">
+                        {messages.length ? messages.map(item => {
+                            return(
+                                <li key={item.id}>
+                                    <span className="author">{item.author}</span>:
+                                    <span className="message">{item.message}</span>
+                                </li>
+                            )
+                        }) : null}
+                    </ul>
+                    <div className="user-info">
+
                     </div>
-                )
-            }) : null}
+                </div>
+                <div>
+                    { isTyping ? `${typingUser} is typing now` : null }
+                    <form onSubmit={this.submitMessage}>
+                        <input type="text" value={this.state.text} onChange={this.setMessage}/>
+                        <input type="submit" value="Send"/>
+                    </form>
+                </div>
             </div>
         )
     }
