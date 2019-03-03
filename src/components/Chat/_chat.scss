@@ -1,0 +1,44 @@
+.main-window{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  position: relative;
+
+  .chat-window{
+    list-style-type: none;
+    padding-left: 0;
+    padding-right: 15px;
+    margin: 0;
+    flex-basis: 100%;
+
+    li{
+      &:nth-child(2n){
+        text-align: right;
+      }
+    }
+
+    .author{
+      cursor: pointer;
+    }
+
+    .message{
+      margin-left: 10px;
+    }
+  }
+
+  .user-info{
+    flex-basis: 55%;
+    border: 1px solid red;
+  }
+
+  .notification-block{
+
+  }
+
+  .block-holder{
+    display: flex;
+    justify-content: space-between;
+  }
+}
